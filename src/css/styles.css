@@ -23,8 +23,30 @@ body .navbar {
 }
 body .navbar-toggle {
   display: flex;
+  justify-content: center;
   align-items: center;
   position: relative;
+}
+@media (min-width: 600px) {
+  body .navbar-toggle {
+    width: 140px;
+    justify-content: space-between;
+  }
+}
+body .navbar-toggle ion-icon {
+  font-size: 2rem;
+  padding: 5px;
+  display: none;
+}
+@media (min-width: 600px) {
+  body .navbar-toggle ion-icon {
+    display: initial;
+  }
+}
+body .navbar-toggle ion-icon:hover {
+  cursor: pointer;
+  background-color: #dedede;
+  border-radius: 50%;
 }
 body .navbar-toggle img {
   height: 20px;
@@ -37,8 +59,14 @@ body .navbar-toggle::after {
   font-size: 0.8rem;
   color: #666666;
   position: absolute;
-  top: -8px;
+  top: 0;
   right: -18px;
+  display: none;
+}
+@media (min-width: 600px) {
+  body .navbar-toggle::after {
+    display: initial;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
