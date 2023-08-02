@@ -21,5 +21,24 @@ body .navbar {
   position: sticky;
   top: 0;
 }
+body .navbar-toggle {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+body .navbar-toggle img {
+  height: 20px;
+}
+body .navbar-toggle img:hover {
+  cursor: pointer;
+}
+body .navbar-toggle::after {
+  content: "BR";
+  font-size: 0.8rem;
+  color: #666666;
+  position: absolute;
+  top: -8px;
+  right: -18px;
+}
 
 /*# sourceMappingURL=styles.css.map */
