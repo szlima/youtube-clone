@@ -3,7 +3,9 @@ export default function Navbar(){
 
     return (
         <>
-            <h1>navbar</h1>
+            <nav className="navbar">
+
+            </nav>            
         </>
     );
 }

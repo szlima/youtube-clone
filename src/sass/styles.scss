@@ -10,4 +10,16 @@ body {
   background-color: variables.$color-white-01;
   color: variables.$color-black-02;  
   font-family: variables.$font-roboto;
+  
+  .navbar{
+    background-color: inherit;
+    width: 100%;
+    height: 60px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+  }
 }
