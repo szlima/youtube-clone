@@ -72,6 +72,19 @@ body .navbar-user {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 15px;
+}
+body .navbar-user ion-icon {
+  display: none;
+}
+@media (min-width: 600px) {
+  body .navbar-user ion-icon {
+    display: initial;
+    font-size: 1.5rem;
+  }
+  body .navbar-user ion-icon:hover {
+    cursor: pointer;
+  }
 }
 body .navbar-user button {
   background-color: inherit;
@@ -107,6 +120,7 @@ body .navbar-user button:hover {
   }
 }
 body .navbar-user button ion-icon {
+  display: initial;
   font-size: 2.2rem;
 }
 @media (min-width: 600px) {

@@ -73,6 +73,20 @@ body {
 
     &-user{
       @include mixins.flex-center;
+      gap: 15px;
+
+      ion-icon{
+        display: none;
+
+        @include mixins.for-tablet-portrait-up{
+          display: initial;
+          font-size: 1.5rem;
+
+          &:hover{
+            cursor: pointer;
+          }
+        }
+      }
 
       button{
         background-color: inherit;
@@ -106,6 +120,7 @@ body {
         }
 
         ion-icon{
+          display: initial;
           font-size: 2.2rem;
 
           @include mixins.for-tablet-portrait-up{
