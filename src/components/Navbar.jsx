@@ -15,6 +15,7 @@ export default function Navbar(){
                 <div className='navbar-user'>
                     <button>
                         <ion-icon name="person-circle-outline"></ion-icon>
+                        <span>Fazer login</span>
                     </button>
                 </div>
             </nav>            

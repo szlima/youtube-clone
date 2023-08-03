@@ -81,11 +81,46 @@ body .navbar-user button {
   align-items: center;
   border: 0;
 }
+@media (min-width: 600px) {
+  body .navbar-user button {
+    border: 1px solid #dedede;
+    border-radius: 50px;
+    padding: 5px 10px;
+    gap: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
 body .navbar-user button:hover {
   cursor: pointer;
 }
+@media (min-width: 600px) {
+  body .navbar-user button:hover {
+    background-color: #def1ff;
+    border-color: #def1ff;
+  }
+}
+@media (min-width: 600px) {
+  body .navbar-user button:active {
+    background-color: #c7d4dd;
+    border-color: #c7d4dd;
+  }
+}
 body .navbar-user button ion-icon {
   font-size: 2.2rem;
+}
+@media (min-width: 600px) {
+  body .navbar-user button ion-icon {
+    font-size: 1.8rem;
+  }
+}
+body .navbar-user button span {
+  display: none;
+}
+@media (min-width: 600px) {
+  body .navbar-user button span {
+    display: initial;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

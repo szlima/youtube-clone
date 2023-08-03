@@ -80,12 +80,45 @@ body {
         @include mixins.flex-center;
         border: 0;
 
+        @include mixins.for-tablet-portrait-up{
+          border: 1px solid variables.$color-gray-01;
+          border-radius: 50px;
+          padding: 5px 10px;
+          gap: 5px;
+          font-size: 1rem;
+          font-weight: 500;
+        }
+
         &:hover{
           cursor: pointer;
+
+          @include mixins.for-tablet-portrait-up{
+            background-color: variables.$color-blue-01;
+            border-color: variables.$color-blue-01;
+          }
+        }
+
+        &:active{
+          @include mixins.for-tablet-portrait-up{
+            background-color: variables.$color-blue-02;
+            border-color: variables.$color-blue-02;
+          }
         }
 
         ion-icon{
           font-size: 2.2rem;
+
+          @include mixins.for-tablet-portrait-up{
+            font-size: 1.8rem;
+          }
+        }
+
+        span{
+          display: none;
+
+          @include mixins.for-tablet-portrait-up{
+            display: initial;
+          }
         }
       }
 
