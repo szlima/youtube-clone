@@ -14,9 +14,7 @@ export default function Navbar(){
                         <input type='text' placeholder='Pesquisar'/>
                         <ion-icon name="search-outline"></ion-icon>
                     </div>
-
-
-
+                    <ion-icon name="mic-outline"></ion-icon>
                 </div>
 
                 <div className='navbar-user'>
