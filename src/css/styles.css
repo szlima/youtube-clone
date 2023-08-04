@@ -18,6 +18,7 @@ body .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 5px;
   position: sticky;
   top: 0;
 }
@@ -76,15 +77,60 @@ body .navbar-search {
   align-items: center;
   justify-content: flex-end;
 }
+@media (min-width: 600px) {
+  body .navbar-search {
+    max-width: 700px;
+    justify-content: center;
+  }
+}
 body .navbar-search-text {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+@media (min-width: 600px) {
+  body .navbar-search-text {
+    border: 1px solid #dedede;
+    border-radius: 50px;
+    width: 90%;
+    min-width: 290px;
+  }
+}
+body .navbar-search-text input {
+  display: none;
+}
+@media (min-width: 600px) {
+  body .navbar-search-text input {
+    display: initial;
+    background-color: inherit;
+    color: #282828;
+    width: calc(100% - 1.5rem - 40px);
+    padding: 10px 15px;
+    border: 0;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    font-size: 1.2rem;
+    z-index: 1;
+  }
+}
 body .navbar-search-text ion-icon {
   padding: 10px 20px;
   color: #282828;
   font-size: 1.5rem;
+}
+body .navbar-search-text ion-icon:hover {
+  cursor: pointer;
+}
+@media (min-width: 600px) {
+  body .navbar-search-text ion-icon {
+    background-color: #f8f8f8;
+    border-left: 1px solid #dedede;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+  body .navbar-search-text ion-icon:active {
+    background-color: #dedede;
+  }
 }
 body .navbar-user {
   display: flex;
@@ -152,6 +198,7 @@ body .navbar-user button span {
 @media (min-width: 600px) {
   body .navbar-user button span {
     display: initial;
+    width: max-content;
   }
 }
 

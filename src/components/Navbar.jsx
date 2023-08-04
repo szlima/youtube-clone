@@ -11,6 +11,7 @@ export default function Navbar(){
 
                 <div className='navbar-search'>
                     <div className='navbar-search-text'>
+                        <input type='text' placeholder='Pesquisar'/>
                         <ion-icon name="search-outline"></ion-icon>
                     </div>
 
@@ -25,7 +26,7 @@ export default function Navbar(){
                         <span>Fazer login</span>
                     </button>
                 </div>
-            </nav>            
+            </nav>
         </>
     );
 }

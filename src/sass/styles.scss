@@ -9,7 +9,7 @@
   
 body {
   background-color: variables.$color-white-01;
-  color: variables.$color-black-02;  
+  color: variables.$color-black-02;
   font-family: variables.$font-roboto;
   
   .navbar{
@@ -20,6 +20,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 5px;
     position: sticky;
     top: 0;
 
@@ -77,13 +78,57 @@ body {
       @include mixins.flex-center;
       justify-content: flex-end;
 
+      @include mixins.for-tablet-portrait-up{
+        max-width: 700px;
+        justify-content: center;
+      }
+
       &-text{
         @include mixins.flex-center;
+
+        @include mixins.for-tablet-portrait-up{
+          border: 1px solid variables.$color-gray-01;
+          border-radius: 50px;
+          width: 90%;
+          min-width: 290px;
+        }
+
+        input{
+          display: none;
+
+          @include mixins.for-tablet-portrait-up{
+            display: initial;
+            background-color: inherit;
+            color: variables.$color-black-01;
+            width: calc(100% - 1.5rem - 40px);
+            padding: 10px 15px;
+            border: 0;
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 50px;
+            font-size: 1.2rem;
+            z-index: 1;
+          }
+        }
 
         ion-icon{
           padding: 10px 20px;
           color: variables.$color-black-01;
           font-size: 1.5rem;
+
+          &:hover{
+            cursor: pointer;
+          }
+
+          @include mixins.for-tablet-portrait-up{
+            background-color: variables.$color-white-02;
+            border-left: 1px solid variables.$color-gray-01;
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+
+            &:active{
+              background-color: variables.$color-gray-01;
+            }
+          }
         }
       }
     }
@@ -150,11 +195,10 @@ body {
 
           @include mixins.for-tablet-portrait-up{
             display: initial;
+            width: max-content;
           }
         }
       }
-
-
     }
   }
 }
