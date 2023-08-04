@@ -68,6 +68,24 @@ body .navbar-toggle::after {
     display: initial;
   }
 }
+body .navbar-search {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-end;
+}
+body .navbar-search-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .navbar-search-text ion-icon {
+  padding: 10px 20px;
+  color: #282828;
+  font-size: 1.5rem;
+}
 body .navbar-user {
   display: flex;
   justify-content: center;

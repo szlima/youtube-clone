@@ -9,8 +9,14 @@ export default function Navbar(){
                     <img src='../src/img/logo.png' alt='Logo do Youtube'/>
                 </div>
 
-                
+                <div className='navbar-search'>
+                    <div className='navbar-search-text'>
+                        <ion-icon name="search-outline"></ion-icon>
+                    </div>
 
+
+
+                </div>
 
                 <div className='navbar-user'>
                     <ion-icon name="ellipsis-vertical-outline"></ion-icon>
