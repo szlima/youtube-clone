@@ -251,11 +251,22 @@ body .videopage-unavailable {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 30px;
+}
+body .videopage-unavailable img {
+  display: none;
+}
+@media (min-width: 600px) {
+  body .videopage-unavailable img {
+    display: initial;
+    width: 280px;
+  }
 }
 body .videopage-unavailable h1 {
   color: var(--preto-02);
   font-weight: normal;
   font-size: 1.7rem;
+  text-align: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

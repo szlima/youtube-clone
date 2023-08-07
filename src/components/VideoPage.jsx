@@ -9,7 +9,7 @@ export default function VideoPage({video}){
                 {video ? 'video'
                 :
                 <main className="videopage-unavailable">
-                    
+                    <img src='../src/img/unavailable_video.png' alt='Vídeo não encontrado'/>
                     <h1>Este vídeo não está mais disponível</h1>
                     
                 </main>

@@ -249,11 +249,22 @@ body {
     &-unavailable{
       @include mixins.flex-center;
       flex-direction: column;
+      gap: 30px;
+
+      img{
+        display: none;
+
+        @include mixins.for-tablet-portrait-up{
+          display: initial;
+          width: 280px;
+        }        
+      }
 
       h1{
         color: var(--preto-02);
         font-weight: normal;
         font-size: 1.7rem;
+        text-align: center;
       }
 
       
