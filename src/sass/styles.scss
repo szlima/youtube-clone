@@ -1,0 +1,238 @@
+@use "variables";
+@use "mixins";
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+  
+body {
+  background-color: variables.$color-white-01;
+  color: variables.$color-black-02;
+  font-family: variables.$font-roboto;
+  
+  .navbar{
+    background-color: variables.$color-white-01;
+    width: 100%;
+    height: 60px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    position: sticky;
+    top: 0;
+
+    @include mixins.for-tablet-portrait-up{
+      gap: 15px;
+    }
+
+    &-toggle{
+      @include mixins.flex-center;
+      position: relative;
+
+      @include mixins.for-tablet-portrait-up{
+        width: 140px;
+        justify-content: space-between;
+      }
+
+      ion-icon{
+        font-size: 2rem;
+        padding: 5px;
+        display: none;
+
+        @include mixins.for-tablet-portrait-up{
+          display: initial;
+        }
+
+        &:hover{
+          cursor: pointer;
+          background-color: variables.$color-gray-01;
+          border-radius: 50%;
+        }
+      }
+
+      img{
+        height: 20px;
+
+        &:hover{
+          cursor: pointer;
+        }
+      }
+
+      &::after{
+        content: 'BR';
+        font-size: .8rem;
+        color: variables.$color-gray-03;
+        position: absolute;    
+        top: 0;
+        right: -18px;
+        display: none;
+
+        @include mixins.for-tablet-portrait-up{
+          display: initial;
+        }
+      }    
+    }
+
+    &-search{
+      height: 100%;
+      width: 100%;
+      gap: 10px;
+      @include mixins.flex-center;
+      justify-content: flex-end;
+
+      @include mixins.for-tablet-portrait-up{
+        max-width: 700px;
+        justify-content: center;
+      }
+
+      ion-icon{        
+        padding: 10px;
+        font-size: 1.8rem;
+        border-radius: 50%;
+
+        @include mixins.for-tablet-portrait-up{
+          background-color: variables.$color-white-02;
+        }
+
+        &:hover{
+          cursor: pointer;
+          @include mixins.for-tablet-portrait-up{
+            background-color: variables.$color-gray-01;
+          }          
+        }
+
+        &:active{
+          @include mixins.for-tablet-portrait-up{
+            background-color: variables.$color-gray-02;
+          }
+        }
+      }
+
+      &-text{
+        @include mixins.flex-center;
+
+        @include mixins.for-tablet-portrait-up{
+          border: 1px solid variables.$color-gray-01;
+          border-radius: 50px;
+          width: 90%;
+        }
+
+        input{
+          display: none;
+
+          @include mixins.for-tablet-portrait-up{
+            display: initial;
+            background-color: inherit;
+            color: variables.$color-black-01;
+            width: calc(100% - (1.5rem + 40px));
+            padding: 10px 15px;
+            border: 0;
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 50px;
+            font-size: 1.2rem;
+            z-index: 1;
+          }
+        }
+
+        ion-icon{          
+          background-color: initial;
+          color: variables.$color-black-01;
+          font-size: 1.5rem;
+          border-radius: 0;
+
+          &:hover{
+            cursor: pointer;
+            background-color: initial;
+          }
+
+          @include mixins.for-tablet-portrait-up{
+            background-color: variables.$color-white-02;
+            border-left: 1px solid variables.$color-gray-01;
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+            padding: 10px 20px;
+
+            &:hover{
+              background-color: variables.$color-white-03;
+            }
+
+            &:active{
+              background-color: variables.$color-gray-01;
+            }
+          }
+        }
+      }
+    }
+
+    &-user{
+      @include mixins.flex-center;
+      gap: 15px;
+
+      ion-icon{
+        display: none;
+
+        @include mixins.for-tablet-portrait-up{
+          display: initial;
+          font-size: 1.5rem;
+
+          &:hover{
+            cursor: pointer;
+          }
+        }
+      }
+
+      button{
+        background-color: inherit;
+        color: variables.$color-blue-03;
+        @include mixins.flex-center;
+        border: 0;
+
+        @include mixins.for-tablet-portrait-up{
+          border: 1px solid variables.$color-gray-01;
+          border-radius: 50px;
+          padding: 5px 10px;
+          gap: 5px;
+          font-size: 1rem;
+          font-weight: 500;
+        }
+
+        &:hover{
+          cursor: pointer;
+
+          @include mixins.for-tablet-portrait-up{
+            background-color: variables.$color-blue-01;
+            border-color: variables.$color-blue-01;
+          }
+        }
+
+        &:active{
+          @include mixins.for-tablet-portrait-up{
+            background-color: variables.$color-blue-02;
+            border-color: variables.$color-blue-02;
+          }
+        }
+
+        ion-icon{
+          display: initial;
+          font-size: 2.2rem;
+
+          @include mixins.for-tablet-portrait-up{
+            font-size: 1.8rem;
+          }
+        }
+
+        span{
+          display: none;
+
+          @include mixins.for-tablet-portrait-up{
+            display: initial;
+            width: max-content;
+          }
+        }
+      }
+    }
+  }
+}
