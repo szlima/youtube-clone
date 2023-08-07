@@ -17,6 +17,37 @@ body {
     height: 100vh;
   }
 
+  button{
+    background-color: inherit;
+    color: variables.$color-blue-03;
+    @include mixins.flex-center;
+    border: 0;
+
+    @include mixins.for-tablet-portrait-up{
+      border: 1px solid variables.$color-gray-01;
+      border-radius: 50px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    &:hover{
+      cursor: pointer;
+
+      @include mixins.for-tablet-portrait-up{
+        background-color: variables.$color-blue-01;
+        border-color: variables.$color-blue-01;
+      }
+    }
+
+    &:active{
+      @include mixins.for-tablet-portrait-up{
+        background-color: variables.$color-blue-02;
+        border-color: variables.$color-blue-02;
+      }
+    }
+  }
+
   .navbar{
     background-color: variables.$color-white-01;
     width: 100%;
@@ -190,34 +221,10 @@ body {
       }
 
       button{
-        background-color: inherit;
-        color: variables.$color-blue-03;
-        @include mixins.flex-center;
-        border: 0;
 
         @include mixins.for-tablet-portrait-up{
-          border: 1px solid variables.$color-gray-01;
-          border-radius: 50px;
-          padding: 5px 10px;
           gap: 5px;
-          font-size: 1rem;
-          font-weight: 500;
-        }
-
-        &:hover{
-          cursor: pointer;
-
-          @include mixins.for-tablet-portrait-up{
-            background-color: variables.$color-blue-01;
-            border-color: variables.$color-blue-01;
-          }
-        }
-
-        &:active{
-          @include mixins.for-tablet-portrait-up{
-            background-color: variables.$color-blue-02;
-            border-color: variables.$color-blue-02;
-          }
+          padding: 5px 10px;      
         }
 
         ion-icon{
@@ -267,7 +274,15 @@ body {
         text-align: center;
       }
 
-      
+      button{
+        display: none;        
+
+        @include mixins.for-tablet-portrait-up{
+          display: initial;
+          text-transform: uppercase;
+          font-size: 1rem;
+        }
+      }
     }
   }
 }
