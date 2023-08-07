@@ -10,6 +10,10 @@ body {
   color: #0f0f0f;
   font-family: "Roboto", sans-serif;
 }
+body #root {
+  width: 100vw;
+  height: 100vh;
+}
 body .navbar {
   background-color: #fff;
   width: 100%;
@@ -234,6 +238,24 @@ body .navbar-user button span {
     display: initial;
     width: max-content;
   }
+}
+body .videopage {
+  width: 100%;
+  min-height: calc(100% - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .videopage-unavailable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body .videopage-unavailable h1 {
+  color: var(--preto-02);
+  font-weight: normal;
+  font-size: 1.7rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

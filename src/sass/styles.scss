@@ -12,6 +12,11 @@ body {
   color: variables.$color-black-02;
   font-family: variables.$font-roboto;
   
+  #root{
+    width: 100vw;
+    height: 100vh;
+  }
+
   .navbar{
     background-color: variables.$color-white-01;
     width: 100%;
@@ -233,6 +238,25 @@ body {
           }
         }
       }
+    }
+  }
+
+  .videopage{
+    width: 100%;
+    min-height: calc(100% - 60px);
+    @include mixins.flex-center;
+
+    &-unavailable{
+      @include mixins.flex-center;
+      flex-direction: column;
+
+      h1{
+        color: var(--preto-02);
+        font-weight: normal;
+        font-size: 1.7rem;
+      }
+
+      
     }
   }
 }
