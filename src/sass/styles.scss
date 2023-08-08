@@ -250,8 +250,27 @@ body {
 
   .videopage{
     width: 100%;
-    min-height: calc(100% - 60px);
+    height: calc(100% - 60px);
+    padding: 0 20px;
     @include mixins.flex-center;
+
+    &-available{background-color: aquamarine;
+      width: 100%;
+      height: 100%;
+      @include mixins.flex-center;
+
+      @include mixins.for-tablet-landscape-up{
+        width: variables.$size-min-tablet-landscape - 40px;
+      }
+
+      @include mixins.for-desktop-up{
+        width: 100%;
+      }
+
+      @include mixins.for-big-desktop-up{
+        width: variables.$size-min-big-desktop - 40px;
+      }
+    }
 
     &-unavailable{
       @include mixins.flex-center;
