@@ -259,6 +259,7 @@ body .videopage-available {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 @media only screen and (min-width: 900px) {
   body .videopage-available {
@@ -273,6 +274,30 @@ body .videopage-available {
 @media only screen and (min-width: 1800px) {
   body .videopage-available {
     width: 1760px;
+  }
+}
+body .videopage-available-player {
+  background-color: red;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (min-width: 1200px) {
+  body .videopage-available-player {
+    width: 80%;
+  }
+}
+body .videopage-available-related {
+  background-color: purple;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (min-width: 1200px) {
+  body .videopage-available-related {
+    width: 20%;
   }
 }
 body .videopage-unavailable {

@@ -8,7 +8,12 @@ export default function VideoPage({video}){
             <div className="videopage">
                 {video ?
                     <div className="videopage-available">
-                        {video}
+                        <main className="videopage-available-player">
+                            {'main'}
+                        </main>
+                        <nav className="videopage-available-related">
+                            {'nav'}
+                        </nav>
                     </div>
                 :
                     <main className="videopage-unavailable">
