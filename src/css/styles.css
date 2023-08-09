@@ -288,6 +288,16 @@ body .videopage-available-player {
     width: 80%;
   }
 }
+body .videopage-available-player-video {
+  background-color: orange;
+  width: 100%;
+}
+body .videopage-available-player-video h1 {
+  background-color: yellowgreen;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
 body .videopage-available-related {
   background-color: purple;
   width: 100%;
