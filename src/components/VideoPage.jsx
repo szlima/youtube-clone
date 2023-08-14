@@ -1,6 +1,11 @@
+import Youtube from 'react-youtube';
 import Navbar from "./Navbar";
 
 export default function VideoPage({video}){
+
+    const youtubeStyle= {
+        paddingBottom: 'calc( 100% / (16/9) )' //aspect ratio
+    };
 
     return (
         <>
@@ -10,7 +15,10 @@ export default function VideoPage({video}){
                     <div className="videopage-available">
                         <main className="videopage-available-player">
                             <div className="videopage-available-player-video">
-
+                                <Youtube className='youtube'
+                                    videoId={video.id}
+                                    style={youtubeStyle}
+                                />
                                 <h1>{video.snippet.title}</h1>
                             </div>
                         </main>

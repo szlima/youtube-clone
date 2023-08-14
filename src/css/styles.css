@@ -292,6 +292,18 @@ body .videopage-available-player-video {
   background-color: orange;
   width: 100%;
 }
+body .videopage-available-player-video .youtube {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+body .videopage-available-player-video .youtube iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 body .videopage-available-player-video h1 {
   background-color: yellowgreen;
   font-size: 1.4rem;
