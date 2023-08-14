@@ -57,6 +57,7 @@ body .navbar {
   gap: 5px;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 @media only screen and (min-width: 600px) {
   body .navbar {
@@ -247,10 +248,14 @@ body .navbar-user button span {
 body .videopage {
   width: 100%;
   height: calc(100% - 60px);
-  padding: 0 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media only screen and (min-width: 600px) {
+  body .videopage {
+    padding: 0 20px;
+  }
 }
 body .videopage-available {
   background-color: aquamarine;
@@ -258,7 +263,7 @@ body .videopage-available {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   flex-wrap: wrap;
 }
 @media only screen and (min-width: 900px) {
@@ -289,7 +294,6 @@ body .videopage-available-player {
   }
 }
 body .videopage-available-player-video {
-  background-color: orange;
   width: 100%;
 }
 body .videopage-available-player-video .youtube {
@@ -305,10 +309,15 @@ body .videopage-available-player-video .youtube iframe {
   height: 100%;
 }
 body .videopage-available-player-video h1 {
-  background-color: yellowgreen;
+  margin: 15px 20px;
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 2rem;
+}
+@media only screen and (min-width: 600px) {
+  body .videopage-available-player-video h1 {
+    margin: 15px 0;
+  }
 }
 body .videopage-available-related {
   background-color: purple;
