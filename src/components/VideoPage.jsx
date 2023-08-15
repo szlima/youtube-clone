@@ -21,6 +21,16 @@ export default function VideoPage({video}){
                                 />
                                 <h1>{video.snippet.title}</h1>
                             </div>
+                            <div className="videopage-available-player-metadata">
+                                <div className="videopage-available-player-metadata-actions">
+                                    <div className='action-buttons'>
+
+                                    </div>
+                                    <div className='action-buttons'>
+
+                                    </div>
+                                </div>
+                            </div>
                         </main>
                         <nav className="videopage-available-related">
                             {'nav'}

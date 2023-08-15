@@ -287,6 +287,7 @@ body .videopage-available-player {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 @media only screen and (min-width: 1200px) {
   body .videopage-available-player {
@@ -318,6 +319,30 @@ body .videopage-available-player-video h1 {
   body .videopage-available-player-video h1 {
     margin: 15px 0;
   }
+}
+body .videopage-available-player-metadata {
+  width: 100%;
+  padding: 0 20px;
+}
+@media only screen and (min-width: 600px) {
+  body .videopage-available-player-metadata {
+    padding: 0;
+  }
+}
+body .videopage-available-player-metadata-actions {
+  background-color: blue;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+body .videopage-available-player-metadata-actions .action-buttons {
+  background-color: aliceblue;
+  width: 350px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 body .videopage-available-related {
   background-color: purple;
