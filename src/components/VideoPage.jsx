@@ -24,7 +24,16 @@ export default function VideoPage({video}){
                             <div className="videopage-available-player-metadata">
                                 <div className="videopage-available-player-metadata-actions">
                                     <div className='action-buttons'>
-
+                                        <div className='channel-data'>
+                                            <div className='channel-data-logo'></div>
+                                            <div className='channel-data-info'>
+                                                <a href='#' className='channel-data-info-name'>{video.snippet.channelTitle}</a>
+                                                <span className='channel-data-info-subscribed'>{video.snippet.subscribed}</span>
+                                            </div>
+                                        </div>
+                                        <div className='channel-subscription'>
+                                            <button>Inscrever-se</button>
+                                        </div>
                                     </div>
                                     <div className='action-buttons'>
 

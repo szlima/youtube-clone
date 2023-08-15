@@ -338,11 +338,59 @@ body .videopage-available-player-metadata-actions {
 }
 body .videopage-available-player-metadata-actions .action-buttons {
   background-color: aliceblue;
-  width: 350px;
+  max-width: 350px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 30px;
+}
+body .videopage-available-player-metadata-actions .action-buttons .channel-data, body .videopage-available-player-metadata-actions .action-buttons .channel-subscription {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .videopage-available-player-metadata-actions .action-buttons .channel-data {
+  gap: 15px;
+}
+body .videopage-available-player-metadata-actions .action-buttons .channel-data-logo {
+  background-color: black;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+body .videopage-available-player-metadata-actions .action-buttons .channel-data-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-items: start;
+  gap: 2px;
+}
+body .videopage-available-player-metadata-actions .action-buttons .channel-data-info-name {
+  color: #282828;
+  font-weight: 500;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+body .videopage-available-player-metadata-actions .action-buttons .channel-data-info-subscribed {
+  font-size: 0.9rem;
+  color: #666666;
+}
+body .videopage-available-player-metadata-actions .action-buttons .channel-subscription button {
+  background-color: #0f0f0f;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 50px;
+}
+body .videopage-available-player-metadata-actions .action-buttons .channel-subscription button:hover {
+  background-color: #282828;
+}
+body .videopage-available-player-metadata-actions .action-buttons .channel-subscription button:active {
+  background-color: #666666;
 }
 body .videopage-available-related {
   background-color: purple;
