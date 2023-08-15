@@ -330,19 +330,19 @@ body .videopage-available-player-metadata {
   }
 }
 body .videopage-available-player-metadata-actions {
-  background-color: blue;
   width: 100%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 body .videopage-available-player-metadata-actions .action-buttons {
-  background-color: aliceblue;
-  max-width: 350px;
   height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+}
+body .videopage-available-player-metadata-actions .action-buttons:first-child {
   gap: 30px;
 }
 body .videopage-available-player-metadata-actions .action-buttons .channel-data, body .videopage-available-player-metadata-actions .action-buttons .channel-subscription {
@@ -391,6 +391,31 @@ body .videopage-available-player-metadata-actions .action-buttons .channel-subsc
 }
 body .videopage-available-player-metadata-actions .action-buttons .channel-subscription button:active {
   background-color: #666666;
+}
+body .videopage-available-player-metadata-actions .action-buttons-wrap {
+  background-color: #dedede;
+  border-radius: 50px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+body .videopage-available-player-metadata-actions .action-buttons-wrap:hover {
+  background-color: #d1d1d1;
+  cursor: pointer;
+}
+body .videopage-available-player-metadata-actions .action-buttons-wrap ion-icon {
+  font-size: 1.5rem;
+}
+body .videopage-available-player-metadata-actions .action-buttons-wrap .video-likes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-right: 10px;
+  border-right: 1px dotted #666666;
 }
 body .videopage-available-related {
   background-color: purple;

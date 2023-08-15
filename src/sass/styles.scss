@@ -322,17 +322,20 @@ body {
             padding: 0;
           }
 
-          &-actions{background-color: blue;
+          &-actions{
             width: 100%;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
 
-            .action-buttons{ background-color: aliceblue;
-              max-width: 350px;
+            .action-buttons{
               height: 50px; //
               @include mixins.flex-center;
-              gap: 30px;
+              gap: 10px;
+
+              &:first-child{
+                gap: 30px;
+              }
 
               .channel-data, .channel-subscription{
                 @include mixins.flex-center;
@@ -386,6 +389,31 @@ body {
                   &:active{
                     background-color: variables.$color-gray-03;
                   }
+                }
+              }
+
+              &-wrap{
+                background-color: variables.$color-gray-01;
+                border-radius: 50px;
+                padding: 10px;
+                @include mixins.flex-center;
+                gap: 10px;
+                font-weight: bold;
+
+                &:hover{
+                  background-color: variables.$color-gray-02;
+                  cursor: pointer;
+                }
+
+                ion-icon{
+                  font-size: 1.5rem;
+                }
+
+                .video-likes{
+                  @include mixins.flex-center;
+                  gap: 10px;
+                  padding-right: 10px;
+                  border-right: 1px dotted variables.$color-gray-03;
                 }
               }
             }

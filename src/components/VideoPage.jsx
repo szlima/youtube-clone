@@ -36,7 +36,20 @@ export default function VideoPage({video}){
                                         </div>
                                     </div>
                                     <div className='action-buttons'>
-
+                                        <div className='action-buttons-wrap'>
+                                            <div className='video-likes'>
+                                                <ion-icon name="thumbs-up-outline"></ion-icon>
+                                                <span>{video.snippet.likes}</span>
+                                            </div>
+                                            <ion-icon name="thumbs-down-outline"></ion-icon>
+                                        </div>
+                                        <div className='action-buttons-wrap'>
+                                            <ion-icon name="arrow-redo-outline"></ion-icon>
+                                            <span>Compartilhar</span>
+                                        </div>
+                                        <div className='action-buttons-wrap'>
+                                            <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
