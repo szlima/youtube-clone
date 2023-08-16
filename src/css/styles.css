@@ -258,7 +258,6 @@ body .videopage {
   }
 }
 body .videopage-available {
-  background-color: aquamarine;
   width: 100%;
   height: 100%;
   display: flex;
@@ -282,7 +281,6 @@ body .videopage-available {
   }
 }
 body .videopage-available-player {
-  background-color: red;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -416,6 +414,45 @@ body .videopage-available-player-metadata-actions .action-buttons-wrap .video-li
   gap: 10px;
   padding-right: 10px;
   border-right: 1px dotted #666666;
+}
+body .videopage-available-player-metadata-description {
+  background-color: #dedede;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+body .videopage-available-player-metadata-description:hover {
+  cursor: pointer;
+  background-color: #d1d1d1;
+}
+body .videopage-available-player-metadata-description > div {
+  margin: 5px 0;
+}
+body .videopage-available-player-metadata-description .description-views {
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+body .videopage-available-player-metadata-description .description-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+body .videopage-available-player-metadata-description .description-text .description {
+  word-spacing: 1px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+body .videopage-available-player-metadata-description .description-text .show-more {
+  color: #282828;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
 }
 body .videopage-available-related {
   background-color: purple;

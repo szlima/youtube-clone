@@ -12,6 +12,12 @@
     align-items: start;
 }
 
+@mixin flex-left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 @mixin for-tablet-portrait-up{
     @media only screen and (min-width: variables.$size-min-tablet-portrait){
         @content;

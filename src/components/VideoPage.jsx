@@ -52,6 +52,16 @@ export default function VideoPage({video}){
                                         </div>
                                     </div>
                                 </div>
+                                <div className='videopage-available-player-metadata-description'>
+                                    <div className='description-views'>
+                                        <span className='views'>{video.snippet.views}</span>
+                                        <span className='published-at'>{video.snippet.publishedAt}</span>
+                                    </div>
+                                    <div className='description-text'>
+                                        <span className='description'>{video.snippet.description}</span>
+                                        <span className='show-more'>Mostrar mais</span>
+                                    </div>
+                                </div>
                             </div>
                         </main>
                         <nav className="videopage-available-related">
