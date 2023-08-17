@@ -1,6 +1,8 @@
 import Youtube from 'react-youtube';
 import Navbar from "./Navbar";
 
+import {getInfoDate} from '../functions';
+
 export default function VideoPage({video}){
 
     const youtubeStyle= {
@@ -55,7 +57,7 @@ export default function VideoPage({video}){
                                 <div className='videopage-available-player-metadata-description'>
                                     <div className='description-views'>
                                         <span className='views'>{video.snippet.views}</span>
-                                        <span className='published-at'>{video.snippet.publishedAt}</span>
+                                        <span className='published-at'>{getInfoDate(video.snippet.publishedAt)}</span>
                                     </div>
                                     <div className='description-text'>
                                         <span className='description'>{video.snippet.description}</span>
