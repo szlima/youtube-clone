@@ -502,6 +502,42 @@ body .videopage-available-player-comments-header .total-comments-number {
 body .videopage-available-player-comments-header ion-icon {
   font-size: 1.2rem;
 }
+body .videopage-available-player-comments-new {
+  display: none;
+}
+body .videopage-available-player-comments-list {
+  width: 100%;
+  margin: 10px 0;
+}
+body .videopage-available-player-comments-list .comment {
+  display: none;
+  gap: 10px;
+}
+body .videopage-available-player-comments-list .comment:first-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (min-width: 1200px) {
+  body .videopage-available-player-comments-list .comment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+body .videopage-available-player-comments-list .comment-img {
+  background-color: black;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+body .videopage-available-player-comments-list .comment-text {
+  width: fit-content;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 body .videopage-available-related {
   background-color: purple;
   width: 100%;

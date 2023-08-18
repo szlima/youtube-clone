@@ -1,5 +1,6 @@
 import Youtube from 'react-youtube';
 import Navbar from "./Navbar";
+import Comment from './Comment';
 
 import {getInfoDate} from '../functions';
 
@@ -71,8 +72,14 @@ export default function VideoPage({video}){
                                         <span className="total-comments">Comentários<span className='total-comments-number'>{video.snippet.comments}</span></span>
                                         <ion-icon name="chevron-expand-outline"></ion-icon>
                                     </div>
-                                    
-                                    
+                                    <div className='videopage-available-player-comments-new'>
+
+                                    </div>
+                                    <div className='videopage-available-player-comments-list'>
+                                        {
+                                            [1,2,3,4,5].map(i => <Comment id={i}/>)
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </main>
