@@ -76,13 +76,14 @@ export default function VideoPage({video}){
                                 </div>
                             </div>
                             <div className='videopage-available-player-comments'>
-                                <div className='videopage-available-player-comments-wrap'>
+                                <div className={`videopage-available-player-comments-wrap ${comments?.pageInfo.totalResults > 0 ? '' : 'no-comment-list'}`}>
                                     <div className='videopage-available-player-comments-header'>
                                         <span className="total-comments">Comentários<span className='total-comments-number'>{video.snippet.comments}</span></span>
                                         <ion-icon name="chevron-expand-outline"></ion-icon>
                                     </div>
                                     <div className='videopage-available-player-comments-new'>
-
+                                        <ion-icon name="person-circle-outline"></ion-icon>
+                                        <input type='text' placeholder='Adicione um comentário...'/>
                                     </div>
                                     <div className='videopage-available-player-comments-list'>
                                         {

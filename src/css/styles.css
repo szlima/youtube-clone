@@ -484,6 +484,14 @@ body .videopage-available-player-comments-wrap:hover {
     background-color: initial;
   }
 }
+body .videopage-available-player-comments .no-comment-list .total-comments-number {
+  display: none;
+}
+body .videopage-available-player-comments .no-comment-list .videopage-available-player-comments-new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 body .videopage-available-player-comments-header {
   width: 100%;
   display: flex;
@@ -504,6 +512,23 @@ body .videopage-available-player-comments-header ion-icon {
 }
 body .videopage-available-player-comments-new {
   display: none;
+  margin: 10px 0;
+  gap: 10px;
+}
+body .videopage-available-player-comments-new ion-icon {
+  font-size: 2.5rem;
+}
+body .videopage-available-player-comments-new input[type=text] {
+  background-color: #bdbdbd;
+  color: #282828;
+  border: 0;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+body .videopage-available-player-comments-new input[type=text]:hover {
+  cursor: inherit;
 }
 body .videopage-available-player-comments-list {
   width: 100%;

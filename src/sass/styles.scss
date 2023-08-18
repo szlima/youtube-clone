@@ -498,6 +498,16 @@ body {
             }
           }
 
+          .no-comment-list{
+            .total-comments-number{
+              display: none;
+            }
+
+            .videopage-available-player-comments-new{
+              @include mixins.flex-center;
+            }
+          }
+
           &-header{
             width: 100%;
             @include mixins.flex-center;
@@ -520,6 +530,26 @@ body {
 
           &-new{
             display: none;
+            margin: 10px 0;
+            gap: 10px;
+
+            ion-icon{
+              font-size: 2.5rem;
+            }
+
+            input[type=text]{
+              background-color: variables.$color-gray-04;
+              color: variables.$color-black-01;
+              border: 0;
+              border-radius: 20px;
+              font-size: .9rem;
+              padding: .5rem 1rem;
+              width: 100%;
+
+              &:hover{
+                cursor: inherit;
+              }
+            }
           }
 
           &-list{//background-color: aquamarine;

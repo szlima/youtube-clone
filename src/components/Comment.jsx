@@ -1,6 +1,6 @@
 
 export default function Comment({comment}){
-console.log(comment);
+// console.log(comment);
     return <>
         <div className="comment">
             <img className="comment-img" src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl}/>
