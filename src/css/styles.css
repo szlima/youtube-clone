@@ -454,6 +454,54 @@ body .videopage-available-player-metadata-description .description-text .show-mo
   font-weight: bold;
   text-align: center;
 }
+body .videopage-available-player-comments {
+  width: 100%;
+  margin: 10px 0;
+  padding: 0 20px;
+}
+@media only screen and (min-width: 600px) {
+  body .videopage-available-player-comments {
+    padding: 0;
+  }
+}
+body .videopage-available-player-comments-wrap {
+  width: 100%;
+  background-color: #dedede;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+body .videopage-available-player-comments-wrap:hover {
+  cursor: pointer;
+  background-color: #d1d1d1;
+}
+@media only screen and (min-width: 1200px) {
+  body .videopage-available-player-comments-wrap {
+    background-color: initial;
+    padding: 0;
+  }
+  body .videopage-available-player-comments-wrap:hover {
+    cursor: initial;
+    background-color: initial;
+  }
+}
+body .videopage-available-player-comments-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+body .videopage-available-player-comments-header .total-comments {
+  font-size: 1.2rem;
+}
+body .videopage-available-player-comments-header .total-comments-number {
+  font-size: 0.95rem;
+  margin: 0 0.5rem;
+  color: #666666;
+}
+body .videopage-available-player-comments-header ion-icon {
+  font-size: 1.2rem;
+}
 body .videopage-available-related {
   background-color: purple;
   width: 100%;

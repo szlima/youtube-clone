@@ -314,7 +314,7 @@ body {
           }
         }
 
-        &-metadata{//background-color: yellow;
+        &-metadata{
           width: 100%;
           padding: 0 20px;
 
@@ -465,6 +465,60 @@ body {
               }
             }
           }
+        }
+
+        &-comments{
+          width: 100%;
+          margin: 10px 0;
+          padding: 0 20px;
+
+          @include mixins.for-tablet-portrait-up{
+            padding: 0;
+          }
+
+          &-wrap{
+            width: 100%;
+            background-color: variables.$color-gray-01;
+            padding: 10px 15px;
+            border-radius: 10px;
+
+            &:hover{
+              cursor: pointer;
+              background-color: variables.$color-gray-02;
+            }
+
+            @include mixins.for-desktop-up{
+              background-color: initial;
+              padding: 0;
+
+              &:hover{
+                cursor: initial;
+                background-color: initial;
+              }
+            }
+          }
+
+          &-header{
+            width: 100%;
+            @include mixins.flex-center;
+            justify-content: space-between;
+
+            .total-comments{
+              font-size: 1.2rem;
+
+              &-number{
+                font-size: .95rem;
+                margin: 0 .5rem;
+                color: variables.$color-gray-03;
+              }
+            }
+
+            ion-icon{
+              font-size: 1.2rem;
+            }
+          }
+
+
         }
       }
 

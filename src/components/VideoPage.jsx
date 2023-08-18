@@ -65,6 +65,16 @@ export default function VideoPage({video}){
                                     </div>
                                 </div>
                             </div>
+                            <div className='videopage-available-player-comments'>
+                                <div className='videopage-available-player-comments-wrap'>
+                                    <div className='videopage-available-player-comments-header'>
+                                        <span className="total-comments">Comentários<span className='total-comments-number'>{video.snippet.comments}</span></span>
+                                        <ion-icon name="chevron-expand-outline"></ion-icon>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
                         </main>
                         <nav className="videopage-available-related">
                             {'nav'}
