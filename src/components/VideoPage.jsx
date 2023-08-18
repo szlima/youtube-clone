@@ -2,13 +2,22 @@ import Youtube from 'react-youtube';
 import Navbar from "./Navbar";
 import Comment from './Comment';
 
-import {getInfoDate} from '../functions';
+import {getInfoDate, getCommentsList} from '../utils/functions';
+
+import {useState, useEffect} from 'react';
 
 export default function VideoPage({video}){
+    const [comments, setComments]= useState(null);
 
     const youtubeStyle= {
         paddingBottom: 'calc( 100% / (16/9) )' //aspect ratio
     };
+
+    useEffect(() => {
+        getCommentsList(video.id)
+            .then(res => setComments(res))
+            .catch(err => console.error(err));
+    }, []);
 
     return (
         <>
@@ -77,7 +86,7 @@ export default function VideoPage({video}){
                                     </div>
                                     <div className='videopage-available-player-comments-list'>
                                         {
-                                            [1,2,3,4,5].map(i => <Comment id={i}/>)
+                                            comments?.items.map(value => <Comment comment={value}/>)
                                         }
                                     </div>
                                 </div>

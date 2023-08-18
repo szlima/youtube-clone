@@ -1,3 +1,6 @@
+import axios from 'axios';
+import {KEY_API_YOUTUBE} from '../data/keys';
+import {HTTP_COMMENTS} from './urls';
 
 export const getInfoDate= _initialDate => {
     const initialDate= new Date(_initialDate);
@@ -22,4 +25,16 @@ export const getInfoDate= _initialDate => {
                     getDiffMinutes() > 0 ?
                         `há ${getDiffMinutes()} minuto${getDiffMinutes()>1 ? 's' : ''}` :
                         'há poucos segundos';
+};
+
+export const getCommentsList= async videoId => {
+    
+    return await axios.get(HTTP_COMMENTS + new URLSearchParams({
+        key: KEY_API_YOUTUBE,
+        part: 'snippet,replies',
+        videoId,
+        maxResults: 10,
+        textFormat:'plainText'
+    })).then(res => res.data)
+        .catch(err => console.error(err));
 };

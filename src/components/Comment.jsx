@@ -1,10 +1,12 @@
 
-export default function Comment({id}){
-
+export default function Comment({comment}){
+console.log(comment);
     return <>
         <div className="comment">
-            <div className="comment-img"></div>
-            <div className="comment-text">{id} Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque molestias quibusdam, veritatis velit at doloribus esse! Voluptas sequi accusantium voluptates, tempora ut deserunt, labore fugiat doloremque porro quasi necessitatibus maiores.</div>
+            <img className="comment-img" src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl}/>
+            <div className="comment-text">
+                {comment.snippet.topLevelComment.snippet.textDisplay}
+            </div>
         </div>
     </>;
 };

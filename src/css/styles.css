@@ -515,18 +515,17 @@ body .videopage-available-player-comments-list .comment {
 }
 body .videopage-available-player-comments-list .comment:first-of-type {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 @media only screen and (min-width: 1200px) {
   body .videopage-available-player-comments-list .comment {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
   }
 }
 body .videopage-available-player-comments-list .comment-img {
-  background-color: black;
   width: 30px;
   height: 30px;
   border-radius: 50%;

@@ -531,15 +531,14 @@ body {
               gap: 10px;
 
               &:first-of-type{
-                @include mixins.flex-center;
+                @include mixins.flex-left;
               }
 
               @include mixins.for-desktop-up{
-                @include mixins.flex-center;
+                @include mixins.flex-left;
               }
 
               &-img{
-                  background-color: black;
                   width: 30px;
                   height: 30px;
                   border-radius: 50%;
