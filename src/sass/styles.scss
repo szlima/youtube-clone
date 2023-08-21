@@ -20,7 +20,7 @@ body {
   button{
     background-color: inherit;
     color: variables.$color-blue-03;
-    @include mixins.flex-center;
+    @include mixins.flex(center, center);
     border: 0;
 
     @include mixins.for-tablet-portrait-up{
@@ -66,7 +66,7 @@ body {
     }
 
     &-toggle{
-      @include mixins.flex-center;
+      @include mixins.flex(center, center);
       position: relative;
 
       @include mixins.for-tablet-portrait-up{
@@ -117,7 +117,7 @@ body {
       height: 100%;
       width: 100%;
       gap: 10px;
-      @include mixins.flex-center;
+      @include mixins.flex(center, center);
       justify-content: flex-end;
 
       @include mixins.for-tablet-portrait-up{
@@ -149,7 +149,7 @@ body {
       }
 
       &-text{
-        @include mixins.flex-center;
+        @include mixins.flex(center, center);
 
         @include mixins.for-tablet-portrait-up{
           border: 1px solid variables.$color-gray-01;
@@ -205,7 +205,7 @@ body {
     }
 
     &-user{
-      @include mixins.flex-center;
+      @include mixins.flex(center, center);
       gap: 15px;
 
       ion-icon{
@@ -252,7 +252,7 @@ body {
   .videopage{
     width: 100%;
     height: calc(100% - 60px);
-    @include mixins.flex-center;
+    @include mixins.flex(center, center);
 
     @include mixins.for-tablet-portrait-up{
       padding: 0 20px;
@@ -261,7 +261,7 @@ body {
     &-available{//background-color: aquamarine;
       width: 100%;
       height: 100%;
-      @include mixins.flex-top;
+      @include mixins.flex(center, start);
       flex-wrap: wrap;
 
       @include mixins.for-tablet-landscape-up{
@@ -278,7 +278,7 @@ body {
 
       &-player{//background-color: red;
         width: 100%;
-        @include mixins.flex-center;
+        @include mixins.flex(center, center);
         flex-direction: column;
 
         @include mixins.for-desktop-up{
@@ -330,7 +330,7 @@ body {
 
             .action-buttons{
               height: 50px; //
-              @include mixins.flex-center;
+              @include mixins.flex(center, center);
               gap: 10px;
 
               &:first-child{
@@ -338,7 +338,7 @@ body {
               }
 
               .channel-data, .channel-subscription{
-                @include mixins.flex-center;
+                @include mixins.flex(center, center);
               }
 
               .channel-data{
@@ -352,7 +352,7 @@ body {
                 }
 
                 &-info{
-                  @include mixins.flex-center;
+                  @include mixins.flex(center, center);
                   flex-direction: column;
                   align-items: start;
                   gap: 2px;
@@ -396,7 +396,7 @@ body {
                 background-color: variables.$color-gray-01;
                 border-radius: 50px;
                 padding: 10px;
-                @include mixins.flex-center;
+                @include mixins.flex(center, center);
                 gap: 10px;
                 font-weight: bold;
 
@@ -410,7 +410,7 @@ body {
                 }
 
                 .video-likes{
-                  @include mixins.flex-center;
+                  @include mixins.flex(center, center);
                   gap: 10px;
                   padding-right: 10px;
                   border-right: 1px dotted variables.$color-gray-03;
@@ -437,7 +437,7 @@ body {
 
             .description-views{
               font-weight: bold;
-              @include mixins.flex-left;
+              @include mixins.flex(flex-start, center);
               gap: 5px;
             }
 
@@ -448,13 +448,7 @@ body {
 
               .description{
                 word-spacing: 1px;
-                overflow: hidden;
-                // text-overflow: ellipsis;
-                // white-space: nowrap;
-
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
+                @include mixins.text-overflow(3);
               }
 
               .show-more{
@@ -504,13 +498,13 @@ body {
             }
 
             .videopage-available-player-comments-new{
-              @include mixins.flex-center;
+              @include mixins.flex(center, center);
             }
           }
 
           &-header{
             width: 100%;
-            @include mixins.flex-space-between;
+            @include mixins.flex(space-between, center);
 
             .total-comments{
               font-size: 1.2rem;
@@ -560,11 +554,11 @@ body {
               gap: 10px;
 
               &:first-of-type{
-                @include mixins.flex-left;
+                @include mixins.flex(flex-start, center);
               }
 
               @include mixins.for-desktop-up{
-                @include mixins.flex-left;
+                @include mixins.flex(flex-start, center);
               }
 
               &-img{
@@ -575,10 +569,7 @@ body {
 
               &-text{
                 width: fit-content;
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
+                @include mixins.text-overflow(2);
               }
             }
           }
@@ -622,8 +613,8 @@ body {
             }
           }
 
-          &-info{  background-color: yellow;
-            @include mixins.flex-space-between;
+          &-info{
+            @include mixins.flex(space-between, start);
             padding: 0 20px;
             margin: 10px 0 20px 0;
 
@@ -632,15 +623,47 @@ body {
               width: 30px;
               height: 30px;
               border-radius: 50%;
+
+              &:hover{
+                cursor: pointer;
+              }
             }
 
-            &-text{background-color: blue;
+            &-text{
               width: calc(100% - 40px - 1.5rem);
+              @include mixins.flex(center, center);
+              flex-direction: column;
 
+              &-title{
+                width: 100%;
+                color: variables.$color-black-01;
+                margin-bottom: 2px;
+                font-weight: 500;
+                text-decoration: none;
+                @include mixins.text-overflow(2);
+              }
+
+              &-data{
+                width: 100%;
+                color: variables.$color-gray-03;
+                font-size: .9rem;
+                @include mixins.text-overflow(2);
+
+                &-info-views{
+                  &::before, &::after{
+                    content: '•';
+                    margin: 0 10px;
+                  }
+                }
+              }
             }
 
             ion-icon{
               font-size: 1.5rem;
+
+              &:hover{
+                cursor: pointer;
+              }
             }
           }
         }
@@ -648,7 +671,7 @@ body {
     }
 
     &-unavailable{
-      @include mixins.flex-center;
+      @include mixins.flex(center, center);
       flex-direction: column;
       gap: 30px;
 
