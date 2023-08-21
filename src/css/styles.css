@@ -574,6 +574,13 @@ body .videopage-available-related {
 body .videopage-available-related .compact-video {
   width: 100%;
 }
+body .videopage-available-related .compact-video:hover {
+  cursor: pointer;
+}
+body .videopage-available-related .compact-video:active {
+  background-color: #dedede;
+  filter: brightness(70%);
+}
 body .videopage-available-related .compact-video-img {
   background-color: navy;
   width: 100%;
@@ -649,9 +656,6 @@ body .videopage-available-related .compact-video-info-text-data-info-views::befo
 }
 body .videopage-available-related .compact-video-info ion-icon {
   font-size: 1.5rem;
-}
-body .videopage-available-related .compact-video-info ion-icon:hover {
-  cursor: pointer;
 }
 body .videopage-unavailable {
   display: flex;

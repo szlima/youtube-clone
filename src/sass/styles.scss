@@ -587,6 +587,15 @@ body {
         .compact-video{
           width: 100%;
 
+          &:hover{
+            cursor: pointer;
+          }
+
+          &:active{
+            background-color: variables.$color-gray-01;
+            filter: brightness(70%);
+          }
+
           &-img{ background-color: navy;
             width: 100%;
             height: 0;
@@ -660,10 +669,6 @@ body {
 
             ion-icon{
               font-size: 1.5rem;
-
-              &:hover{
-                cursor: pointer;
-              }
             }
           }
         }
