@@ -495,9 +495,8 @@ body .videopage-available-player-comments .no-comment-list .videopage-available-
 body .videopage-available-player-comments-header {
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 body .videopage-available-player-comments-header .total-comments {
   font-size: 1.2rem;
@@ -563,16 +562,63 @@ body .videopage-available-player-comments-list .comment-text {
   -webkit-box-orient: vertical;
 }
 body .videopage-available-related {
-  background-color: purple;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 10px 0;
 }
 @media only screen and (min-width: 1200px) {
   body .videopage-available-related {
     width: 20%;
   }
+}
+body .videopage-available-related .compact-video {
+  width: 100%;
+}
+body .videopage-available-related .compact-video-img {
+  background-color: navy;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+  overflow: hidden;
+}
+body .videopage-available-related .compact-video-img .image {
+  background-color: aquamarine;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+body .videopage-available-related .compact-video-img-duration {
+  background-color: #282828;
+  color: #f8f8f8;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+body .videopage-available-related .compact-video-info {
+  background-color: yellow;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin: 10px 0 20px 0;
+}
+body .videopage-available-related .compact-video-info-logo {
+  background-color: black;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+body .videopage-available-related .compact-video-info-text {
+  background-color: blue;
+  width: calc(100% - 40px - 1.5rem);
+}
+body .videopage-available-related .compact-video-info ion-icon {
+  font-size: 1.5rem;
 }
 body .videopage-unavailable {
   display: flex;

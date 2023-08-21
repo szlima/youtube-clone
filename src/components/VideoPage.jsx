@@ -1,6 +1,7 @@
 import Youtube from 'react-youtube';
 import Navbar from "./Navbar";
 import Comment from './Comment';
+import CompactVideo from './CompactVideo';
 
 import {getInfoDate, getCommentsList} from '../utils/functions';
 
@@ -94,7 +95,9 @@ export default function VideoPage({video}){
                             </div>
                         </main>
                         <nav className="videopage-available-related">
-                            {'nav'}
+                            {
+                                [1,2,3,4,5].map(i => <CompactVideo/>)
+                            }
                         </nav>
                     </div>
                 :
