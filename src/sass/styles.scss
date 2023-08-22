@@ -5,6 +5,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  transition: .7s;
 }
   
 body {
@@ -361,7 +363,6 @@ body {
                     color: variables.$color-black-01;
                     font-weight: 500;
                     font-size: 1.2rem;
-                    text-decoration: none;
                   }
 
                   &-subscribed{
@@ -587,13 +588,8 @@ body {
         .compact-video{
           width: 100%;
 
-          &:hover{
-            cursor: pointer;
-          }
-
           &:active{
-            background-color: variables.$color-gray-01;
-            filter: brightness(70%);
+            filter: brightness(80%);
           }
 
           &-img{ background-color: navy;
@@ -607,6 +603,7 @@ body {
               position: absolute;
               width: 100%;
               height: 100%;
+              object-fit: cover;
               top: 0;
               left: 0;
             }
@@ -648,7 +645,6 @@ body {
                 color: variables.$color-black-01;
                 margin-bottom: 2px;
                 font-weight: 500;
-                text-decoration: none;
                 @include mixins.text-overflow(2);
               }
 
@@ -657,6 +653,14 @@ body {
                 color: variables.$color-gray-03;
                 font-size: .9rem;
                 @include mixins.text-overflow(2);
+
+                &-channel{
+                  color: variables.$color-gray-03;
+
+                  &:hover{
+                    color: variables.$color-black-01;
+                  }
+                }
 
                 &-info-views{
                   &::before, &::after{
@@ -669,6 +673,7 @@ body {
 
             ion-icon{
               font-size: 1.5rem;
+              color: variables.$color-gray-03;
             }
           }
         }

@@ -4,6 +4,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  transition: 0.7s;
 }
 
 body {
@@ -370,7 +372,6 @@ body .videopage-available-player-metadata-actions .action-buttons .channel-data-
   color: #282828;
   font-weight: 500;
   font-size: 1.2rem;
-  text-decoration: none;
 }
 body .videopage-available-player-metadata-actions .action-buttons .channel-data-info-subscribed {
   font-size: 0.9rem;
@@ -574,12 +575,8 @@ body .videopage-available-related {
 body .videopage-available-related .compact-video {
   width: 100%;
 }
-body .videopage-available-related .compact-video:hover {
-  cursor: pointer;
-}
 body .videopage-available-related .compact-video:active {
-  background-color: #dedede;
-  filter: brightness(70%);
+  filter: brightness(80%);
 }
 body .videopage-available-related .compact-video-img {
   background-color: navy;
@@ -594,6 +591,7 @@ body .videopage-available-related .compact-video-img .image {
   position: absolute;
   width: 100%;
   height: 100%;
+  object-fit: cover;
   top: 0;
   left: 0;
 }
@@ -635,7 +633,6 @@ body .videopage-available-related .compact-video-info-text-title {
   color: #282828;
   margin-bottom: 2px;
   font-weight: 500;
-  text-decoration: none;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -650,12 +647,19 @@ body .videopage-available-related .compact-video-info-text-data {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+body .videopage-available-related .compact-video-info-text-data-channel {
+  color: #666666;
+}
+body .videopage-available-related .compact-video-info-text-data-channel:hover {
+  color: #282828;
+}
 body .videopage-available-related .compact-video-info-text-data-info-views::before, body .videopage-available-related .compact-video-info-text-data-info-views::after {
   content: "•";
   margin: 0 10px;
 }
 body .videopage-available-related .compact-video-info ion-icon {
   font-size: 1.5rem;
+  color: #666666;
 }
 body .videopage-unavailable {
   display: flex;

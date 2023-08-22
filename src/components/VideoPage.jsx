@@ -3,12 +3,15 @@ import Navbar from "./Navbar";
 import Comment from './Comment';
 import CompactVideo from './CompactVideo';
 
-import {getInfoDate, getCommentsList} from '../utils/functions';
+import {
+    getInfoDate, getCommentsList, getRelatedVideosList
+} from '../utils/functions';
 
 import {useState, useEffect} from 'react';
 
 export default function VideoPage({video}){
     const [comments, setComments]= useState(null);
+    const [relatedVideos, setRelatedVideos]= useState(null);
 
     const youtubeStyle= {
         paddingBottom: 'calc( 100% / (16/9) )' //aspect ratio
@@ -17,6 +20,10 @@ export default function VideoPage({video}){
     useEffect(() => {
         getCommentsList(video.id)
             .then(res => setComments(res))
+            .catch(err => console.error(err));
+
+        getRelatedVideosList(video.snippet.tags)
+            .then(res => setRelatedVideos(res))
             .catch(err => console.error(err));
     }, []);
 
@@ -96,7 +103,11 @@ export default function VideoPage({video}){
                         </main>
                         <nav className="videopage-available-related">
                             {
-                                [1,2,3,4,5].map(i => <CompactVideo/>)
+                                relatedVideos?.items.map(value => {
+                                    if(value.id.videoId === video.id)
+                                        return;
+                                    return <CompactVideo video={value}/>;
+                                })
                             }
                         </nav>
                     </div>
