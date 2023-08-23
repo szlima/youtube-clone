@@ -6,7 +6,6 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
-  transition: .7s;
 }
   
 body {
@@ -253,7 +252,7 @@ body {
 
   .videopage{
     width: 100%;
-    height: calc(100% - 60px);
+    min-height: calc(100% - 60px);
     @include mixins.flex(center, center);
 
     @include mixins.for-tablet-portrait-up{
@@ -272,6 +271,7 @@ body {
 
       @include mixins.for-desktop-up{
         width: 100%;
+        gap: 30px;
       }
 
       @include mixins.for-big-desktop-up{
@@ -284,7 +284,7 @@ body {
         flex-direction: column;
 
         @include mixins.for-desktop-up{
-          width: 80%;//
+          width: calc(100% - 400px - 30px);
         }
 
         &-video{
@@ -294,6 +294,7 @@ body {
             position: relative;
             overflow: hidden;
             width: 100%;
+            border-radius: 10px;
 
             iframe{
               position: absolute;
@@ -582,7 +583,8 @@ body {
         margin: 10px 0;
 
         @include mixins.for-desktop-up{
-          width: 20%;//
+          width: 400px;
+          margin: 0;
         }
 
         .compact-video{
@@ -598,6 +600,7 @@ body {
             padding-bottom: calc(100% / (16/9));
             position: relative;
             overflow: hidden;
+            border-radius: 10px;
 
             .image{ background-color: aquamarine;
               position: absolute;
