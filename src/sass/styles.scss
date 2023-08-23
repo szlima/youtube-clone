@@ -259,7 +259,7 @@ body {
       padding: 0 20px;
     }
 
-    &-available{//background-color: aquamarine;
+    &-available{
       width: 100%;
       height: 100%;
       @include mixins.flex(center, start);
@@ -278,7 +278,7 @@ body {
         width: variables.$size-min-big-desktop - 40px;
       }
 
-      &-player{//background-color: red;
+      &-player{
         width: 100%;
         @include mixins.flex(center, center);
         flex-direction: column;
@@ -294,7 +294,10 @@ body {
             position: relative;
             overflow: hidden;
             width: 100%;
-            border-radius: 10px;
+
+            @include mixins.for-tablet-portrait-up{
+              border-radius: 10px;
+            }
 
             iframe{
               position: absolute;
@@ -332,7 +335,7 @@ body {
             flex-wrap: wrap;
 
             .action-buttons{
-              height: 50px; //
+              height: 50px;
               @include mixins.flex(center, center);
               gap: 10px;
 
@@ -578,7 +581,7 @@ body {
         }
       }
 
-      &-related{//background-color: purple;
+      &-related{
         width: 100%;
         margin: 10px 0;
 
@@ -594,15 +597,43 @@ body {
             filter: brightness(80%);
           }
 
-          &-img{ background-color: navy;
+          @include mixins.for-desktop-up{
+            @include mixins.flex(center, start);
+            gap: 10px;
+            margin: 10px 0;
+
+            &:first-of-type{
+              margin: 0 0 10px 0;
+            }
+
+            ion-icon{
+              visibility: hidden;
+            }
+
+            &:hover{
+              ion-icon{
+                visibility: visible;
+              }
+            }
+          }
+
+          &-img{
             width: 100%;
             height: 0;
             padding-bottom: calc(100% / (16/9));
             position: relative;
             overflow: hidden;
-            border-radius: 10px;
 
-            .image{ background-color: aquamarine;
+            @include mixins.for-tablet-portrait-up{
+              border-radius: 10px;
+            }
+
+            @include mixins.for-desktop-up{
+              width: 200px;
+              padding-bottom: calc(200px / (16/9));
+            }
+
+            .image{
               position: absolute;
               width: 100%;
               height: 100%;
@@ -619,6 +650,12 @@ body {
               position: absolute;
               bottom: 15px;
               right: 15px;
+
+              @include mixins.for-desktop-up{
+                font-size: .9rem;
+                bottom: 5px;
+                right: 5px;
+              }
             }
           }
 
@@ -626,6 +663,14 @@ body {
             @include mixins.flex(space-between, start);
             padding: 0 20px;
             margin: 10px 0 20px 0;
+
+            @include mixins.for-tablet-portrait-up{
+              padding: 0;
+            }
+
+            @include mixins.for-desktop-up{
+              width: calc(100% - 200px);
+            }
 
             &-logo{background-color: black;
               margin-right: 10px;
@@ -636,12 +681,20 @@ body {
               &:hover{
                 cursor: pointer;
               }
+
+              @include mixins.for-desktop-up{
+                display: none;
+              }
             }
 
             &-text{
               width: calc(100% - 40px - 1.5rem);
               @include mixins.flex(center, center);
               flex-direction: column;
+
+              @include mixins.for-desktop-up{
+                width: calc(100% - 1.5rem);
+              }
 
               &-title{
                 width: 100%;
@@ -657,18 +710,44 @@ body {
                 font-size: .9rem;
                 @include mixins.text-overflow(2);
 
+                @include mixins.for-desktop-up{
+                  display: flex;
+                  flex-direction: column;
+                  margin-top: 5px;
+                }
+
                 &-channel{
                   color: variables.$color-gray-03;
 
                   &:hover{
                     color: variables.$color-black-01;
                   }
+
+                  @include mixins.for-desktop-up{
+                    margin-bottom: 2px;
+                    @include mixins.text-overflow(1);
+                  }
                 }
 
-                &-info-views{
-                  &::before, &::after{
-                    content: '•';
-                    margin: 0 10px;
+                &-info{
+
+                  @include mixins.for-desktop-up{
+                    @include mixins.text-overflow(1);
+                  }
+
+                  &-views{
+                    &::before, &::after{
+                      content: '•';
+                      margin: 0 5px;
+                    }
+
+                    @include mixins.for-desktop-up{
+
+                      &::before{
+                        content: '';
+                        margin: 0;
+                      }
+                    }
                   }
                 }
               }
