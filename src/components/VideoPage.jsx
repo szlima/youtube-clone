@@ -95,7 +95,7 @@ export default function VideoPage({video}){
                                     </div>
                                     <div className='videopage-available-player-comments-list'>
                                         {
-                                            comments?.items.map(value => <Comment comment={value}/>)
+                                            comments?.items.map(value => <Comment comment={value} key={value.id}/>)
                                         }
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@ export default function VideoPage({video}){
                                 relatedVideos?.items.map(value => {
                                     if(value.id.videoId === video.id)
                                         return;
-                                    return <CompactVideo video={value}/>;
+                                    return <CompactVideo video={value} key={value.id.videoId}/>;
                                 })
                             }
                         </nav>
