@@ -511,18 +511,51 @@ body {
             width: 100%;
             @include mixins.flex(space-between, center);
 
+            @include mixins.for-desktop-up{
+              @include mixins.flex(flex-start, center);
+              gap: 20px;
+            }
+
             .total-comments{
               font-size: 1.2rem;
+
+              @include mixins.for-desktop-up{
+                font-size: 1.3rem;
+              }
 
               &-number{
                 font-size: .95rem;
                 margin: 0 .5rem;
                 color: variables.$color-gray-03;
+
+                @include mixins.for-desktop-up{
+                  font-size: 1rem;
+                }
               }
             }
 
             ion-icon{
               font-size: 1.2rem;
+            }
+
+            .expand-comments{
+              @include mixins.for-desktop-up{
+                display: none;
+              }
+            }
+
+            .sorting-comments{
+              display: none;
+
+              &-text{
+                color: variables.$color-black-01;
+                font-weight: 500;
+              }
+
+              @include mixins.for-desktop-up{
+                @include mixins.flex(center, center);
+                gap: 10px;
+              }
             }
           }
 
@@ -531,8 +564,18 @@ body {
             margin: 10px 0;
             gap: 10px;
 
+            @include mixins.for-desktop-up{
+              @include mixins.flex(center, center);
+              margin: 15px 0;
+            }
+
             ion-icon{
               font-size: 2.5rem;
+
+              @include mixins.for-desktop-up{
+                color: variables.$color-blue-03;
+                font-size: 3.5rem;
+              }
             }
 
             input[type=text]{
@@ -540,6 +583,7 @@ body {
               color: variables.$color-black-01;
               border: 0;
               border-radius: 20px;
+              outline: 0;
               font-size: .9rem;
               padding: .5rem 1rem;
               width: 100%;
@@ -547,12 +591,28 @@ body {
               &:hover{
                 cursor: inherit;
               }
+
+              @include mixins.for-desktop-up{
+                background-color: inherit;
+                border-radius: 0;
+                border-bottom: 1px solid variables.$color-gray-01;
+                font-size: 1rem;
+                padding: .5rem 0;
+              }
             }
           }
 
           &-list{
             width: 100%;
             margin: 10px 0;
+
+            @include mixins.for-desktop-up{
+              margin: 20px 0;
+
+              @include mixins.flex(flex-start, start);
+              flex-direction: column;
+              gap: 20px;
+            }
 
             .comment{
               display: none;

@@ -37,6 +37,7 @@ export const getCommentsList= async videoId => {
         part: 'snippet,replies',
         videoId,
         maxResults: 10,
+        order: 'relevance',
         textFormat:'plainText'
     })).then(res => res.data)
         .catch(err => console.error(err));
