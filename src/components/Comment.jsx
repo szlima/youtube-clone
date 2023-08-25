@@ -1,11 +1,39 @@
 
+import {getInfoDate} from '../utils/functions';
+
 export default function Comment({comment}){
-// console.log(comment);
+
     return <>
         <div className="comment">
-            <img className="comment-img" src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl}/>
-            <div className="comment-text">
-                {comment.snippet.topLevelComment.snippet.textDisplay}
+            <a href={comment.snippet.topLevelComment.snippet.authorChannelUrl}>
+                <img className="comment-img" src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl}/>
+            </a>
+            <div className="comment-data">
+                <div className="comment-data-info">
+                    <span className="comment-data-info-author">{comment.snippet.topLevelComment.snippet.authorDisplayName}</span>
+                    <span className="comment-data-info-date">{getInfoDate(comment.snippet.topLevelComment.snippet.publishedAt)}</span>
+                </div>
+                <span className="comment-data-text">
+                    {comment.snippet.topLevelComment.snippet.textDisplay}
+                </span>
+                <div className="comment-data-actions">
+                    <span className="comment-data-actions-likes">
+                        <ion-icon name="thumbs-up-outline"></ion-icon>
+                        <span className="comment-data-actions-likes-total">{comment.snippet.topLevelComment.snippet.likeCount}</span>
+                    </span>
+                    <ion-icon name="thumbs-down-outline"></ion-icon>
+                    <button className="comment-data-actions-reply">Responder</button>
+                </div>
+                {(() => {
+                    const comments= comment?.snippet.totalReplyCount;
+
+                    return comments > 0 ?
+                        <div className="comment-data-replies">
+                            <ion-icon name="caret-down-outline"></ion-icon>
+                            <span>{comments} resposta{comments>1 ? 's' : ''}</span>
+                        </div>
+                        : '';
+                })()}
             </div>
         </div>
     </>;

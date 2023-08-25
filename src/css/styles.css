@@ -625,7 +625,12 @@ body .videopage-available-player-comments-list .comment:first-of-type {
   body .videopage-available-player-comments-list .comment {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: start;
+  }
+  body .videopage-available-player-comments-list .comment:first-of-type {
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
   }
 }
 body .videopage-available-player-comments-list .comment-img {
@@ -633,12 +638,118 @@ body .videopage-available-player-comments-list .comment-img {
   height: 30px;
   border-radius: 50%;
 }
-body .videopage-available-player-comments-list .comment-text {
+@media only screen and (min-width: 1200px) {
+  body .videopage-available-player-comments-list .comment-img {
+    width: 40px;
+    height: 40px;
+  }
+}
+body .videopage-available-player-comments-list .comment-img:hover {
+  cursor: pointer;
+}
+body .videopage-available-player-comments-list .comment-data {
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
+  flex-direction: column;
+  gap: 5px;
+}
+body .videopage-available-player-comments-list .comment-data-info {
+  display: none;
+}
+@media only screen and (min-width: 1200px) {
+  body .videopage-available-player-comments-list .comment-data-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+  }
+  body .videopage-available-player-comments-list .comment-data-info-author {
+    font-weight: 500;
+  }
+  body .videopage-available-player-comments-list .comment-data-info-author::before {
+    content: "@";
+  }
+  body .videopage-available-player-comments-list .comment-data-info-author:hover {
+    cursor: pointer;
+  }
+  body .videopage-available-player-comments-list .comment-data-info-date {
+    color: #666666;
+    font-size: 0.8rem;
+  }
+}
+body .videopage-available-player-comments-list .comment-data-text {
   width: fit-content;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+@media only screen and (min-width: 1200px) {
+  body .videopage-available-player-comments-list .comment-data-text {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+}
+body .videopage-available-player-comments-list .comment-data-actions {
+  display: none;
+}
+@media only screen and (min-width: 1200px) {
+  body .videopage-available-player-comments-list .comment-data-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+  }
+  body .videopage-available-player-comments-list .comment-data-actions ion-icon {
+    color: #282828;
+    font-size: 1.3rem;
+    padding: 5px;
+  }
+  body .videopage-available-player-comments-list .comment-data-actions ion-icon:hover {
+    background-color: #dedede;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  body .videopage-available-player-comments-list .comment-data-actions-likes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  body .videopage-available-player-comments-list .comment-data-actions-likes-total {
+    color: #666666;
+    font-size: 0.9rem;
+  }
+  body .videopage-available-player-comments-list .comment-data-actions-reply {
+    color: #282828;
+    border: 0;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+  body .videopage-available-player-comments-list .comment-data-actions-reply:hover {
+    background-color: #dedede;
+  }
+}
+body .videopage-available-player-comments-list .comment-data-replies {
+  display: none;
+}
+@media only screen and (min-width: 1200px) {
+  body .videopage-available-player-comments-list .comment-data-replies {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #065fd4;
+    padding: 10px;
+    gap: 10px;
+    font-weight: 500;
+  }
+  body .videopage-available-player-comments-list .comment-data-replies:hover {
+    background-color: #def1ff;
+    border-radius: 50px;
+    cursor: pointer;
+  }
 }
 body .videopage-available-related {
   width: 100%;

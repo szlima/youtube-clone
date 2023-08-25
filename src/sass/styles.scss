@@ -623,18 +623,126 @@ body {
               }
 
               @include mixins.for-desktop-up{
-                @include mixins.flex(flex-start, center);
+                @include mixins.flex(flex-start, start);
+
+                &:first-of-type{
+                  @include mixins.flex(flex-start, start);
+                }
               }
 
               &-img{
                   width: 30px;
                   height: 30px;
                   border-radius: 50%;
+
+                  @include mixins.for-desktop-up{
+                    width: 40px;
+                    height: 40px;
+                  }
+
+                  &:hover{
+                    cursor: pointer;
+                  }
               }
 
-              &-text{
-                width: fit-content;
-                @include mixins.text-overflow(2);
+              &-data{
+                @include mixins.flex(flex-start, start);
+                flex-direction: column;
+                gap: 5px;
+
+                &-info{
+                  display: none;
+
+                  @include mixins.for-desktop-up{
+                    @include mixins.flex(flex-start, center);
+                    gap: 5px;
+
+                    &-author{
+                      font-weight: 500;
+
+                      &::before{
+                        content: '@';
+                      }
+
+                      &:hover{
+                        cursor: pointer;
+                      }
+                    }
+
+                    &-date{
+                      color: variables.$color-gray-03;
+                      font-size: .8rem;
+                    }
+                  }
+                }
+
+                &-text{
+                  width: fit-content;
+                  @include mixins.text-overflow(2);
+
+                  @include mixins.for-desktop-up{
+                    @include mixins.text-overflow(4);
+                  }
+                }
+
+                &-actions{
+                  display: none;
+
+                  @include mixins.for-desktop-up{
+                    @include mixins.flex(flex-start, center);
+                    gap: 15px;
+
+                    ion-icon{
+                      color: variables.$color-black-01;
+                      font-size: 1.3rem;
+                      padding: 5px;
+
+                      &:hover{
+                        background-color: variables.$color-gray-01;
+                        border-radius: 50%;
+                        cursor: pointer;
+                      }
+                    }
+
+                    &-likes{
+                      @include mixins.flex(center, center);
+
+                      &-total{
+                        color: variables.$color-gray-03;
+                        font-size: .9rem;
+                      }
+                    }
+
+                    &-reply{
+                      color: variables.$color-black-01;
+                      border: 0;
+                      font-size: .9rem;
+                      padding: 5px 10px;
+
+                      &:hover{
+                        background-color: variables.$color-gray-01;
+                      }
+                    }
+                  }
+                }
+
+                &-replies{
+                  display: none;
+
+                  @include mixins.for-desktop-up{
+                    @include mixins.flex(flex-start, center);
+                    color: variables.$color-blue-03;
+                    padding: 10px;
+                    gap: 10px;
+                    font-weight: 500;
+
+                    &:hover{
+                      background-color: variables.$color-blue-01;
+                      border-radius: 50px;
+                      cursor: pointer;
+                    }
+                  }
+                }
               }
             }
           }
