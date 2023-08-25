@@ -270,7 +270,7 @@ body {
       }
 
       @include mixins.for-desktop-up{
-        width: 100%;
+        width: calc(100% - 200px);
         gap: 30px;
       }
 

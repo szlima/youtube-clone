@@ -274,7 +274,7 @@ body .videopage-available {
 }
 @media only screen and (min-width: 1200px) {
   body .videopage-available {
-    width: 100%;
+    width: calc(100% - 200px);
     gap: 30px;
   }
 }
