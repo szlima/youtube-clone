@@ -14,6 +14,8 @@ body {
   font-family: variables.$font-roboto;
   
   #root{
+    min-width: variables.$size-min-any-device;
+    overflow-x: scroll;
     width: 100vw;
     height: 100vh;
   }
