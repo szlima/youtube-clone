@@ -414,6 +414,9 @@ body .videopage-available-player-metadata-actions .action-buttons-wrap:hover {
 body .videopage-available-player-metadata-actions .action-buttons-wrap ion-icon {
   font-size: 1.5rem;
 }
+body .videopage-available-player-metadata-actions .action-buttons-wrap ion-icon:hover {
+  color: #282828;
+}
 body .videopage-available-player-metadata-actions .action-buttons-wrap .video-likes {
   display: flex;
   justify-content: center;
@@ -552,6 +555,9 @@ body .videopage-available-player-comments-header .sorting-comments-text {
     justify-content: center;
     align-items: center;
     gap: 10px;
+  }
+  body .videopage-available-player-comments-header .sorting-comments:hover {
+    cursor: pointer;
   }
 }
 body .videopage-available-player-comments-new {

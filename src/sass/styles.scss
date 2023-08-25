@@ -412,6 +412,10 @@ body {
 
                 ion-icon{
                   font-size: 1.5rem;
+
+                  &:hover{
+                    color: variables.$color-black-01;
+                  }
                 }
 
                 .video-likes{
@@ -555,6 +559,10 @@ body {
               @include mixins.for-desktop-up{
                 @include mixins.flex(center, center);
                 gap: 10px;
+
+                &:hover{
+                  cursor: pointer;
+                }
               }
             }
           }
