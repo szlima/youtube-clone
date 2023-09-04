@@ -1,7 +1,17 @@
+import {useState, useEffect} from 'react';
 
-import {getInfoDate} from '../utils/functions';
+import {
+    getInfoDate, getChannelData
+} from '../utils/functions';
 
 export default function Comment({comment}){
+    const [channelData, setChannelData]= useState(null);
+
+    useEffect(() => {
+        getChannelData(comment.snippet.topLevelComment.snippet.authorChannelId.value)
+            .then(res => setChannelData(res))
+            .catch(err => console.error(err));
+    }, []);
 
     return <>
         <div className="comment">
@@ -10,7 +20,7 @@ export default function Comment({comment}){
             </a>
             <div className="comment-data">
                 <div className="comment-data-info">
-                    <span className="comment-data-info-author">{comment.snippet.topLevelComment.snippet.authorDisplayName}</span>
+                    <span className="comment-data-info-author">{channelData?.snippet.customUrl}</span>
                     <span className="comment-data-info-date">{getInfoDate(comment.snippet.topLevelComment.snippet.publishedAt)}</span>
                 </div>
                 <span className="comment-data-text">

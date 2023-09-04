@@ -675,9 +675,6 @@ body .videopage-available-player-comments-list .comment-data-info {
   body .videopage-available-player-comments-list .comment-data-info-author {
     font-weight: 500;
   }
-  body .videopage-available-player-comments-list .comment-data-info-author::before {
-    content: "@";
-  }
   body .videopage-available-player-comments-list .comment-data-info-author:hover {
     cursor: pointer;
   }

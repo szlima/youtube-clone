@@ -670,10 +670,6 @@ body {
                     &-author{
                       font-weight: 500;
 
-                      &::before{
-                        content: '@';
-                      }
-
                       &:hover{
                         cursor: pointer;
                       }

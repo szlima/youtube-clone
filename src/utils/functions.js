@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {KEY_API_YOUTUBE} from '../data/keys';
 import {
-    HTTP_COMMENTS, HTTP_SEARCH,
+    HTTP_COMMENTS, HTTP_SEARCH, HTTP_CHANNELS,
     URL_WATCH_VIDEO, URL_CHANNEL
 } from './urls';
 
@@ -58,6 +58,17 @@ export const getRelatedVideosList= async tags => {
     })).then(res => res.data)
     .catch(err => console.err(err));
 }
+
+export const getChannelData= async channelId => {
+
+    return await axios.get(HTTP_CHANNELS + new URLSearchParams({
+        key: KEY_API_YOUTUBE,
+        part: 'snippet',
+        id: channelId,
+        maxResults: 1
+    })).then(res => res.data.items[0])
+    .catch(err => console.error(err));
+};
 
 export const getURLVideo= videoId => URL_WATCH_VIDEO.concat(videoId);
 
