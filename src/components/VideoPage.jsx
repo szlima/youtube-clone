@@ -4,7 +4,8 @@ import Comment from './Comment';
 import CompactVideo from './CompactVideo';
 
 import {
-    getInfoDate, getCommentsList, getRelatedVideosList
+    getInfoDate, getInfoViews,
+    getCommentsList, getRelatedVideosList
 } from '../utils/functions';
 
 import {useState, useEffect} from 'react';
@@ -74,7 +75,7 @@ export default function VideoPage({video}){
                                 </div>
                                 <div className='videopage-available-player-metadata-description'>
                                     <div className='description-views'>
-                                        <span className='views'>{video.snippet.views}</span>
+                                        <span className='views'>{getInfoViews(video.snippet.views)}</span>
                                         <span className='published-at'>{getInfoDate(video.snippet.publishedAt)}</span>
                                     </div>
                                     <div className='description-text'>

@@ -30,6 +30,24 @@ export const getInfoDate= _initialDate => {
                         'há poucos segundos';
 };
 
+export const getInfoViews= totalViews => {
+
+    const getFloorViews= measure => Math.floor(totalViews/measure);
+
+    const billionViews= (() => getFloorViews(1000000000))();
+    const millionViews= (() => getFloorViews(1000000))();
+    const thousandViews= (() => getFloorViews(1000))();
+
+    return billionViews >= 1 ?
+        `${billionViews} bi de visualizações` :
+        millionViews >= 1 ?
+            `${millionViews} mi de visualizações` :
+            thousandViews >= 1 ?
+                `${thousandViews} mil visualizações` :
+                `${totalViews} visualizaç${totalViews==1 ? 'ão' : 'ões'}`;
+
+};
+
 export const getCommentsList= async videoId => {
     
     return await axios.get(HTTP_COMMENTS + new URLSearchParams({
@@ -56,7 +74,7 @@ export const getRelatedVideosList= async tags => {
             total.concat('|', currentValue)
         )
     })).then(res => res.data)
-    .catch(err => console.err(err));
+    .catch(err => console.error(err));
 }
 
 export const getChannelData= async channelId => {
