@@ -68,16 +68,22 @@ body .navbar {
     gap: 15px;
   }
 }
+@media only screen and (min-width: 1800px) {
+  body .navbar {
+    width: 1800px;
+    margin: auto;
+  }
+}
 body .navbar-toggle {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin-right: 10px;
   position: relative;
 }
 @media only screen and (min-width: 600px) {
   body .navbar-toggle {
     width: 140px;
-    justify-content: space-between;
   }
 }
 body .navbar-toggle ion-icon {
