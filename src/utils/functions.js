@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {KEY_API_YOUTUBE} from '../data/keys';
 import {
-    HTTP_COMMENTS, HTTP_SEARCH, HTTP_CHANNELS,
+    HTTP_COMMENTS, HTTP_SEARCH,
+    HTTP_CHANNELS, HTTP_VIDEOS,
     URL_WATCH_VIDEO, URL_CHANNEL
 } from './urls';
 
@@ -48,6 +49,40 @@ export const getInfoViews= totalViews => {
 
 };
 
+export const getInfoDuration= duration => {
+
+    const getPartsTime= (complete, designator) => {
+        const index= complete.search(designator);
+
+        return index === -1 ?
+            {
+                currentPart: "",
+                finalPart: complete
+            } :
+            {
+                currentPart: complete.slice(0, index),
+                finalPart: complete.slice(index+1)
+            };
+    };
+
+    const getInfoTime= () => {
+
+        const {currentPart:hours, finalPart:afterHours}= getPartsTime(duration.replace("PT", ""), "H");
+        const {currentPart:minutes, finalPart:afterMinutes}= getPartsTime(afterHours, "M");
+        const {currentPart:seconds,}= getPartsTime(afterMinutes, "S");
+
+        return (hours ? `${hours}:` : '') +
+            (hours && minutes < 10 ? '0' : '') +
+            (minutes ? `${minutes}:` : '0:') +
+            (seconds < 10 ? '0' : '') +
+            (seconds ? seconds : '0');
+    };
+
+    return duration ?
+        duration.startsWith("PT") ? getInfoTime() : "+24:00:00"
+        : "";
+}
+
 export const getCommentsList= async videoId => {
     
     return await axios.get(HTTP_COMMENTS + new URLSearchParams({
@@ -83,6 +118,17 @@ export const getChannelData= async channelId => {
         key: KEY_API_YOUTUBE,
         part: 'snippet',
         id: channelId,
+        maxResults: 1
+    })).then(res => res.data.items[0])
+    .catch(err => console.error(err));
+};
+
+export const getVideoData= async videoId => {
+
+    return await axios.get(HTTP_VIDEOS + new URLSearchParams({
+        key: KEY_API_YOUTUBE,
+        part: 'contentDetails, statistics',
+        id: videoId,
         maxResults: 1
     })).then(res => res.data.items[0])
     .catch(err => console.error(err));
