@@ -1,11 +1,38 @@
-@mixin flex-center{
+@use "variables";
+
+@mixin flex ($justify-content, $align-items){
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+@mixin text-overflow ($lines){
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
 }
 
 @mixin for-tablet-portrait-up{
-    @media (min-width: 600px){
+    @media only screen and (min-width: variables.$size-min-tablet-portrait){
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-up{
+    @media only screen and (min-width: variables.$size-min-tablet-landscape){
+        @content;
+    }
+}
+
+@mixin for-desktop-up{
+    @media only screen and (min-width: variables.$size-min-desktop){
+        @content;
+    }
+}
+
+@mixin for-big-desktop-up{
+    @media only screen and (min-width: variables.$size-min-big-desktop){
         @content;
     }
 }

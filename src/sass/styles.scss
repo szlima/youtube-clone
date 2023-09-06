@@ -5,6 +5,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
   
 body {
@@ -12,29 +13,71 @@ body {
   color: variables.$color-black-02;
   font-family: variables.$font-roboto;
   
+  #root{
+    min-width: variables.$size-min-any-device;
+    overflow-x: scroll;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  button{
+    background-color: inherit;
+    color: variables.$color-blue-03;
+    @include mixins.flex(center, center);
+    border: 0;
+
+    @include mixins.for-tablet-portrait-up{
+      border: 1px solid variables.$color-gray-01;
+      border-radius: 50px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    &:hover{
+      cursor: pointer;
+
+      @include mixins.for-tablet-portrait-up{
+        background-color: variables.$color-blue-01;
+        border-color: variables.$color-blue-01;
+      }
+    }
+
+    &:active{
+      @include mixins.for-tablet-portrait-up{
+        background-color: variables.$color-blue-02;
+        border-color: variables.$color-blue-02;
+      }
+    }
+  }
+
   .navbar{
     background-color: variables.$color-white-01;
     width: 100%;
     height: 60px;
     padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include mixins.flex(space-between, center);
     gap: 5px;
     position: sticky;
     top: 0;
+    z-index: 1;
 
     @include mixins.for-tablet-portrait-up{
       gap: 15px;
     }
 
+    @include mixins.for-big-desktop-up{
+      width: variables.$size-min-big-desktop;
+      margin: auto;
+   }
+
     &-toggle{
-      @include mixins.flex-center;
+      @include mixins.flex(space-between, center);
+      margin-right: 10px;
       position: relative;
 
       @include mixins.for-tablet-portrait-up{
         width: 140px;
-        justify-content: space-between;
       }
 
       ion-icon{
@@ -80,7 +123,7 @@ body {
       height: 100%;
       width: 100%;
       gap: 10px;
-      @include mixins.flex-center;
+      @include mixins.flex(center, center);
       justify-content: flex-end;
 
       @include mixins.for-tablet-portrait-up{
@@ -112,7 +155,7 @@ body {
       }
 
       &-text{
-        @include mixins.flex-center;
+        @include mixins.flex(center, center);
 
         @include mixins.for-tablet-portrait-up{
           border: 1px solid variables.$color-gray-01;
@@ -168,7 +211,7 @@ body {
     }
 
     &-user{
-      @include mixins.flex-center;
+      @include mixins.flex(center, center);
       gap: 15px;
 
       ion-icon{
@@ -185,34 +228,10 @@ body {
       }
 
       button{
-        background-color: inherit;
-        color: variables.$color-blue-03;
-        @include mixins.flex-center;
-        border: 0;
 
         @include mixins.for-tablet-portrait-up{
-          border: 1px solid variables.$color-gray-01;
-          border-radius: 50px;
-          padding: 5px 10px;
           gap: 5px;
-          font-size: 1rem;
-          font-weight: 500;
-        }
-
-        &:hover{
-          cursor: pointer;
-
-          @include mixins.for-tablet-portrait-up{
-            background-color: variables.$color-blue-01;
-            border-color: variables.$color-blue-01;
-          }
-        }
-
-        &:active{
-          @include mixins.for-tablet-portrait-up{
-            background-color: variables.$color-blue-02;
-            border-color: variables.$color-blue-02;
-          }
+          padding: 5px 10px;      
         }
 
         ion-icon{
@@ -231,6 +250,723 @@ body {
             display: initial;
             width: max-content;
           }
+        }
+      }
+    }
+  }
+
+  .videopage{
+    width: 100%;
+    min-height: calc(100% - 60px);
+    @include mixins.flex(center, center);
+
+    @include mixins.for-tablet-portrait-up{
+      padding: 0 20px;
+    }
+
+    &-available{
+      width: 100%;
+      height: 100%;
+      @include mixins.flex(center, start);
+      flex-wrap: wrap;
+
+      @include mixins.for-tablet-landscape-up{
+        width: variables.$size-min-tablet-landscape - 40px;
+      }
+
+      @include mixins.for-desktop-up{
+        width: calc(100% - 200px);
+        gap: 30px;
+      }
+
+      @include mixins.for-big-desktop-up{
+        width: variables.$size-min-big-desktop - 40px;
+      }
+
+      &-player{
+        width: 100%;
+        @include mixins.flex(center, center);
+        flex-direction: column;
+
+        @include mixins.for-desktop-up{
+          width: calc(100% - 400px - 30px);
+        }
+
+        &-video{
+          width: 100%;
+
+          .youtube{
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+
+            @include mixins.for-tablet-portrait-up{
+              border-radius: 10px;
+            }
+
+            iframe{
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          h1{
+            margin: 15px 20px;
+            font-size: 1.4rem;
+            font-weight: 500;
+            line-height: 2rem;
+
+            @include mixins.for-tablet-portrait-up{
+              margin: 15px 0;
+            }
+          }
+        }
+
+        &-metadata{
+          width: 100%;
+          padding: 0 20px;
+
+          @include mixins.for-tablet-portrait-up{
+            padding: 0;
+          }
+
+          &-actions{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            .action-buttons{
+              height: 50px;
+              @include mixins.flex(center, center);
+              gap: 10px;
+
+              &:first-child{
+                gap: 30px;
+              }
+
+              .channel-data, .channel-subscription{
+                @include mixins.flex(center, center);
+              }
+
+              .channel-data{
+                gap: 15px;
+
+                &-logo{
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                }
+
+                &-info{
+                  @include mixins.flex(center, center);
+                  flex-direction: column;
+                  align-items: start;
+                  gap: 2px;
+
+                  &-name{
+                    color: variables.$color-black-01;
+                    font-weight: 500;
+                    font-size: 1.2rem;
+                  }
+
+                  &-subscribed{
+                    font-size: .9rem;
+                    color: variables.$color-gray-03;
+                  }
+                }
+              }
+
+              .channel-subscription{
+
+                button{
+                  background-color: variables.$color-black-02;
+                  color: variables.$color-white-01;
+                  font-size: 1rem;
+                  font-weight: 500;
+                  padding: 10px 15px;
+                  border: 0;
+                  border-radius: 50px;
+
+                  &:hover{
+                    background-color: variables.$color-black-01;
+                  }
+
+                  &:active{
+                    background-color: variables.$color-gray-03;
+                  }
+                }
+              }
+
+              &-wrap{
+                background-color: variables.$color-gray-01;
+                border-radius: 50px;
+                padding: 10px;
+                @include mixins.flex(center, center);
+                gap: 10px;
+                font-weight: bold;
+
+                &:hover{
+                  background-color: variables.$color-gray-02;
+                  cursor: pointer;
+                }
+
+                ion-icon{
+                  font-size: 1.5rem;
+
+                  &:hover{
+                    color: variables.$color-black-01;
+                  }
+                }
+
+                .video-likes{
+                  @include mixins.flex(center, center);
+                  gap: 10px;
+                  padding-right: 10px;
+                  border-right: 1px dotted variables.$color-gray-03;
+                }
+              }
+            }
+          }
+
+          &-description{
+            background-color: variables.$color-gray-01;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 10px;
+
+            &:hover{
+              cursor: pointer;
+              background-color: variables.$color-gray-02;
+            }
+
+            & > div{
+              margin: 5px 0;
+            }
+
+            .description-views{
+              font-weight: bold;
+              @include mixins.flex(flex-start, center);
+              gap: 5px;
+            }
+
+            .description-text{
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+
+              .description{
+                word-spacing: 1px;
+                @include mixins.text-overflow(3);
+              }
+
+              .show-more{
+                color: variables.$color-black-01;
+                font-size: .9rem;
+                font-weight: bold;
+                text-align: center;
+              }
+            }
+          }
+        }
+
+        &-comments{
+          width: 100%;
+          margin: 10px 0;
+          padding: 0 20px;
+
+          @include mixins.for-tablet-portrait-up{
+            padding: 0;
+          }
+
+          &-wrap{
+            width: 100%;
+            background-color: variables.$color-gray-01;
+            padding: 10px 15px;
+            border-radius: 10px;
+
+            &:hover{
+              cursor: pointer;
+              background-color: variables.$color-gray-02;
+            }
+
+            @include mixins.for-desktop-up{
+              background-color: initial;
+              padding: 0;
+
+              &:hover{
+                cursor: initial;
+                background-color: initial;
+              }
+            }
+          }
+
+          .no-comment-list{
+            .total-comments-number{
+              display: none;
+            }
+
+            .videopage-available-player-comments-new{
+              @include mixins.flex(center, center);
+            }
+          }
+
+          &-header{
+            width: 100%;
+            @include mixins.flex(space-between, center);
+
+            @include mixins.for-desktop-up{
+              @include mixins.flex(flex-start, center);
+              gap: 20px;
+            }
+
+            .total-comments{
+              font-size: 1.2rem;
+
+              @include mixins.for-desktop-up{
+                font-size: 1.3rem;
+              }
+
+              &-number{
+                font-size: .95rem;
+                margin: 0 .5rem;
+                color: variables.$color-gray-03;
+
+                @include mixins.for-desktop-up{
+                  font-size: 1rem;
+                }
+              }
+            }
+
+            ion-icon{
+              font-size: 1.2rem;
+            }
+
+            .expand-comments{
+              @include mixins.for-desktop-up{
+                display: none;
+              }
+            }
+
+            .sorting-comments{
+              display: none;
+
+              &-text{
+                color: variables.$color-black-01;
+                font-weight: 500;
+              }
+
+              @include mixins.for-desktop-up{
+                @include mixins.flex(center, center);
+                gap: 10px;
+
+                &:hover{
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+
+          &-new{
+            display: none;
+            margin: 10px 0;
+            gap: 10px;
+
+            @include mixins.for-desktop-up{
+              @include mixins.flex(center, center);
+              margin: 15px 0;
+            }
+
+            ion-icon{
+              font-size: 2.5rem;
+
+              @include mixins.for-desktop-up{
+                color: variables.$color-blue-03;
+                font-size: 3.5rem;
+              }
+            }
+
+            input[type=text]{
+              background-color: variables.$color-gray-04;
+              color: variables.$color-black-01;
+              border: 0;
+              border-radius: 20px;
+              outline: 0;
+              font-size: .9rem;
+              padding: .5rem 1rem;
+              width: 100%;
+
+              &:hover{
+                cursor: inherit;
+              }
+
+              @include mixins.for-desktop-up{
+                background-color: inherit;
+                border-radius: 0;
+                border-bottom: 1px solid variables.$color-gray-01;
+                font-size: 1rem;
+                padding: .5rem 0;
+              }
+            }
+          }
+
+          &-list{
+            width: 100%;
+            margin: 10px 0;
+
+            @include mixins.for-desktop-up{
+              margin: 20px 0;
+
+              @include mixins.flex(flex-start, start);
+              flex-direction: column;
+              gap: 20px;
+            }
+
+            .comment{
+              display: none;
+              gap: 10px;
+
+              &:first-of-type{
+                @include mixins.flex(flex-start, center);
+              }
+
+              @include mixins.for-desktop-up{
+                @include mixins.flex(flex-start, start);
+
+                &:first-of-type{
+                  @include mixins.flex(flex-start, start);
+                }
+              }
+
+              &-img{
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 50%;
+
+                  @include mixins.for-desktop-up{
+                    width: 40px;
+                    height: 40px;
+                  }
+
+                  &:hover{
+                    cursor: pointer;
+                  }
+              }
+
+              &-data{
+                @include mixins.flex(flex-start, start);
+                flex-direction: column;
+                gap: 5px;
+
+                &-info{
+                  display: none;
+
+                  @include mixins.for-desktop-up{
+                    @include mixins.flex(flex-start, center);
+                    gap: 5px;
+
+                    &-author{
+                      font-weight: 500;
+
+                      &:hover{
+                        cursor: pointer;
+                      }
+                    }
+
+                    &-date{
+                      color: variables.$color-gray-03;
+                      font-size: .8rem;
+                    }
+                  }
+                }
+
+                &-text{
+                  width: fit-content;
+                  @include mixins.text-overflow(2);
+
+                  @include mixins.for-desktop-up{
+                    @include mixins.text-overflow(4);
+                  }
+                }
+
+                &-actions{
+                  display: none;
+
+                  @include mixins.for-desktop-up{
+                    @include mixins.flex(flex-start, center);
+                    gap: 15px;
+
+                    ion-icon{
+                      color: variables.$color-black-01;
+                      font-size: 1.3rem;
+                      padding: 5px;
+
+                      &:hover{
+                        background-color: variables.$color-gray-01;
+                        border-radius: 50%;
+                        cursor: pointer;
+                      }
+                    }
+
+                    &-likes{
+                      @include mixins.flex(center, center);
+
+                      &-total{
+                        color: variables.$color-gray-03;
+                        font-size: .9rem;
+                      }
+                    }
+
+                    &-reply{
+                      color: variables.$color-black-01;
+                      border: 0;
+                      font-size: .9rem;
+                      padding: 5px 10px;
+
+                      &:hover{
+                        background-color: variables.$color-gray-01;
+                      }
+                    }
+                  }
+                }
+
+                &-replies{
+                  display: none;
+
+                  @include mixins.for-desktop-up{
+                    @include mixins.flex(flex-start, center);
+                    color: variables.$color-blue-03;
+                    padding: 10px;
+                    gap: 10px;
+                    font-weight: 500;
+
+                    &:hover{
+                      background-color: variables.$color-blue-01;
+                      border-radius: 50px;
+                      cursor: pointer;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &-related{
+        width: 100%;
+        margin: 10px 0;
+
+        @include mixins.for-desktop-up{
+          width: 400px;
+          margin: 0;
+        }
+
+        .compact-video{
+          width: 100%;
+
+          &:active{
+            filter: brightness(80%);
+          }
+
+          @include mixins.for-desktop-up{
+            @include mixins.flex(center, start);
+            gap: 10px;
+            margin: 10px 0;
+
+            &:first-of-type{
+              margin: 0 0 10px 0;
+            }
+
+            ion-icon{
+              visibility: hidden;
+            }
+
+            &:hover{
+              ion-icon{
+                visibility: visible;
+              }
+            }
+          }
+
+          &-img{
+            display: block;
+            width: 100%;
+            height: 0;
+            padding-bottom: calc(100% / (16/9));
+            position: relative;
+            overflow: hidden;
+
+            @include mixins.for-tablet-portrait-up{
+              border-radius: 10px;
+            }
+
+            @include mixins.for-desktop-up{
+              width: 200px;
+              padding-bottom: calc(200px / (16/9));
+            }
+
+            .image{
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              top: 0;
+              left: 0;
+            }
+
+            &-duration{
+              background-color: variables.$color-black-01;
+              color: variables.$color-white-02;
+              padding: 5px;
+              border-radius: 5px;
+              position: absolute;
+              bottom: 15px;
+              right: 15px;
+
+              @include mixins.for-desktop-up{
+                font-size: .9rem;
+                bottom: 5px;
+                right: 5px;
+              }
+            }
+          }
+
+          &-info{
+            @include mixins.flex(space-between, start);
+            padding: 0 20px;
+            margin: 10px 0 20px 0;
+
+            @include mixins.for-tablet-portrait-up{
+              padding: 0;
+            }
+
+            @include mixins.for-desktop-up{
+              width: calc(100% - 200px);
+            }
+
+            &-logo{background-color: black;
+              margin-right: 10px;
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+
+              &:hover{
+                cursor: pointer;
+              }
+
+              @include mixins.for-desktop-up{
+                display: none;
+              }
+            }
+
+            &-text{
+              width: calc(100% - 40px - 1.5rem);
+              @include mixins.flex(center, center);
+              flex-direction: column;
+
+              @include mixins.for-desktop-up{
+                width: calc(100% - 1.5rem);
+              }
+
+              &-title{
+                width: 100%;
+                color: variables.$color-black-01;
+                margin-bottom: 2px;
+                font-weight: 500;
+                @include mixins.text-overflow(2);
+              }
+
+              &-data{
+                width: 100%;
+                color: variables.$color-gray-03;
+                font-size: .9rem;
+                @include mixins.text-overflow(2);
+
+                @include mixins.for-desktop-up{
+                  display: flex;
+                  flex-direction: column;
+                  margin-top: 5px;
+                }
+
+                &-channel{
+                  color: variables.$color-gray-03;
+
+                  &:hover{
+                    color: variables.$color-black-01;
+                  }
+
+                  @include mixins.for-desktop-up{
+                    margin-bottom: 2px;
+                    @include mixins.text-overflow(1);
+                  }
+                }
+
+                &-info{
+
+                  @include mixins.for-desktop-up{
+                    @include mixins.text-overflow(1);
+                  }
+
+                  &-views{
+                    &::before, &::after{
+                      content: '•';
+                      margin: 0 5px;
+                    }
+
+                    @include mixins.for-desktop-up{
+
+                      &::before{
+                        content: '';
+                        margin: 0;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            ion-icon{
+              font-size: 1.5rem;
+              color: variables.$color-gray-03;
+            }
+          }
+        }
+      }
+    }
+
+    &-unavailable{
+      @include mixins.flex(center, center);
+      flex-direction: column;
+      gap: 30px;
+
+      img{
+        display: none;
+
+        @include mixins.for-tablet-portrait-up{
+          display: initial;
+          width: 280px;
+        }        
+      }
+
+      h1{
+        color: var(--preto-02);
+        font-weight: normal;
+        font-size: 1.7rem;
+        text-align: center;
+      }
+
+      button{
+        display: none;        
+
+        @include mixins.for-tablet-portrait-up{
+          display: initial;
+          text-transform: uppercase;
+          font-size: 1rem;
         }
       }
     }
