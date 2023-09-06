@@ -5,7 +5,8 @@ import CompactVideo from './CompactVideo';
 
 import {
     getInfoDate, getInfoViews,
-    getCommentsList, getRelatedVideosList
+    getCommentsList, getRelatedVideosList,
+    getURLChannel
 } from '../utils/functions';
 
 import {useState, useEffect} from 'react';
@@ -46,7 +47,9 @@ export default function VideoPage({video}){
                                 <div className="videopage-available-player-metadata-actions">
                                     <div className='action-buttons'>
                                         <div className='channel-data'>
-                                            <div className='channel-data-logo'></div>
+                                            <a href={getURLChannel(video.snippet.channelId)}>
+                                                <img className='channel-data-logo' src={video.snippet.thumbnails}/>
+                                            </a>
                                             <div className='channel-data-info'>
                                                 <a href='#' className='channel-data-info-name'>{video.snippet.channelTitle}</a>
                                                 <span className='channel-data-info-subscribed'>{video.snippet.subscribed}</span>

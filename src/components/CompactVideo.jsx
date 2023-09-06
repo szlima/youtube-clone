@@ -2,28 +2,35 @@ import {useState, useEffect} from 'react';
 
 import {
     getInfoDate, getInfoViews,
-    getInfoDuration, getVideoData,
+    getInfoDuration, getVideoData, getChannelData,
     getURLVideo, getURLChannel
 } from '../utils/functions';
 
 export default function CompactVideo({video}){
     const [videoData, setVideoData]= useState(null);
+    const [channelData, setChannelData]= useState(null);
 
     useEffect(() => {
         getVideoData(video.id.videoId)
             .then(res => setVideoData(res))
             .catch(err => console.error(err));
+
+        getChannelData(video.snippet.channelId)
+            .then(res => setChannelData(res))
+            .catch(err => console.error(err));
     }, []);
     
     return (
         <>
-            <a href={getURLVideo(video.id.videoId)} className='compact-video'>
-                <div className='compact-video-img'>
+            <div className='compact-video'>
+                <a href={getURLVideo(video.id.videoId)} className='compact-video-img'>
                     <img className='image' src={video.snippet.thumbnails.high.url}/>
                     <span className='compact-video-img-duration'>{getInfoDuration(videoData?.contentDetails.duration)}</span>
-                </div>
+                </a>
                 <div className='compact-video-info'>
-                    <div className='compact-video-info-logo'></div>
+                    <a href={getURLChannel(video.snippet.channelId)}>
+                        <img className='compact-video-info-logo' src={channelData?.snippet.thumbnails.default.url}/>
+                    </a>
                     <div className='compact-video-info-text'>
                         <a href={getURLVideo(video.id.videoId)} className='compact-video-info-text-title'>{video.snippet.title}</a>
                         <div className='compact-video-info-text-data'>
@@ -36,7 +43,7 @@ export default function CompactVideo({video}){
                     </div>
                     <ion-icon name="ellipsis-vertical-outline"></ion-icon>
                 </div>
-            </a>
+            </div>
         </>
     );
 };

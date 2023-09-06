@@ -368,7 +368,6 @@ body .videopage-available-player-metadata-actions .action-buttons .channel-data 
   gap: 15px;
 }
 body .videopage-available-player-metadata-actions .action-buttons .channel-data-logo {
-  background-color: black;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -797,6 +796,7 @@ body .videopage-available-related .compact-video:active {
   }
 }
 body .videopage-available-related .compact-video-img {
+  display: block;
   width: 100%;
   height: 0;
   padding-bottom: 56.25%;
