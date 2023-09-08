@@ -1,3 +1,4 @@
+import HomePage from "./HomePage";
 import VideoPage from "./VideoPage";
 
 export default function App() {
@@ -21,7 +22,8 @@ export default function App() {
 
   return (
     <>
-      <VideoPage video={videoTeste}/>
+      {/* <VideoPage video={videoTeste}/> */}
+      <HomePage />
     </>
   )
 }
