@@ -7,7 +7,12 @@ export default function HomePage(){
             <Navbar />
             
             <div className='homepage'>
-                <h1>homepage</h1>
+                <nav className='homepage-navbar'>
+                    nav
+                </nav>
+                <main className='homepage-main'>
+                    main
+                </main>
             </div>
         </>
     );

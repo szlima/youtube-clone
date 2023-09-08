@@ -255,9 +255,48 @@ body .navbar-user button span {
     width: max-content;
   }
 }
-body .videopage {
+body .homepage, body .videopage {
   width: 100%;
   min-height: calc(100% - 60px);
+}
+body .homepage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+body .homepage-navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+}
+@media only screen and (min-width: 900px) {
+  body .homepage-navbar {
+    position: static;
+    width: 80px;
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  body .homepage-navbar {
+    width: 250px;
+  }
+}
+body .homepage-main {
+  width: 100%;
+}
+@media only screen and (min-width: 900px) {
+  body .homepage-main {
+    width: calc(100% - 80px);
+  }
+}
+@media only screen and (min-width: 1200px) {
+  body .homepage-main {
+    width: calc(100% - 250px);
+  }
+}
+body .videopage {
   display: flex;
   justify-content: center;
   align-items: center;
