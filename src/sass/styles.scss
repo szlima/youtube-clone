@@ -265,12 +265,20 @@ body {
     @include mixins.flex(center, start);
 
     &-navbar{
+      @include mixins.flex(center, center);
       position: fixed;
       bottom: 0;
+      left: 0;
       width: 100%;
       height: 50px;
 
+      @include mixins.for-phone-only{
+        display: none;
+      }
+
       @include mixins.for-tablet-landscape-up{
+        @include mixins.flex(flex-start, center);
+        flex-direction: column;
         position: static;
         width: 80px;
         height: 100%;
@@ -279,6 +287,40 @@ body {
       @include mixins.for-desktop-up{
         width: 250px;
       }
+
+      &-section{
+        display: none;
+
+        &:nth-of-type(1), &:nth-of-type(2){
+          @include mixins.flex(center, center);
+
+          .homepage-navbar-section-option{
+            width: 20vw;
+          }
+
+          @include mixins.for-tablet-landscape-up{
+            flex-direction: column;
+            width: 100%;
+
+            .homepage-navbar-section-option{
+              width: auto;
+            }
+          }
+        }
+
+        @include mixins.for-desktop-up{
+          @include mixins.flex(center, center);
+          flex-direction: column;
+          width: 100%;
+        }
+
+        &-option{
+          @include mixins.flex(center, center);
+          flex-direction: column;
+        }
+      }
+
+
     }
 
     &-main{
