@@ -294,11 +294,38 @@ body .homepage-navbar {
 }
 @media only screen and (min-width: 1200px) {
   body .homepage-navbar {
-    width: 250px;
+    width: 220px;
+    height: calc(100vh - 60px);
+    padding: 10px;
+    overflow-y: scroll;
   }
 }
 body .homepage-navbar-section {
   display: none;
+}
+@media only screen and (min-width: 1200px) {
+  body .homepage-navbar-section {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px 0;
+    border-top: 1px solid #dedede;
+  }
+  body .homepage-navbar-section:nth-of-type(1) {
+    border-top: 0;
+    padding-top: 0;
+  }
+  body .homepage-navbar-section:nth-of-type(3) p, body .homepage-navbar-section:nth-of-type(3) button {
+    margin: 5px 15px;
+  }
+  body .homepage-navbar-section:nth-of-type(3) p {
+    line-height: 1.5rem;
+  }
+  body .homepage-navbar-section:nth-of-type(3) button {
+    gap: 5px;
+  }
 }
 body .homepage-navbar-section:nth-of-type(1), body .homepage-navbar-section:nth-of-type(2) {
   display: flex;
@@ -317,14 +344,46 @@ body .homepage-navbar-section:nth-of-type(1) .homepage-navbar-section-option, bo
     width: auto;
   }
 }
+body .homepage-navbar-section:nth-of-type(6) ion-icon {
+  color: #ff0000;
+}
+body .homepage-navbar-section:last-of-type {
+  padding-bottom: 0;
+}
+body .homepage-navbar-section:last-of-type .homepage-navbar-section-option {
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+body .homepage-navbar-section:last-of-type .homepage-navbar-section-option a {
+  color: #666666;
+}
+body .homepage-navbar-section:last-of-type .homepage-navbar-section-option:hover {
+  background-color: initial;
+  cursor: initial;
+}
+body .homepage-navbar-section:last-of-type .homepage-navbar-section-option p {
+  color: #666666;
+  font-weight: normal;
+  font-size: 0.85rem;
+}
+body .homepage-navbar-section .active-navbar {
+  background-color: #dedede;
+  color: #0f0f0f;
+  font-weight: 500;
+}
+body .homepage-navbar-section ion-icon {
+  font-size: 1.5rem;
+}
 @media only screen and (min-width: 1200px) {
-  body .homepage-navbar-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
+  body .homepage-navbar-section ion-icon {
+    font-size: 1.7rem;
   }
+}
+body .homepage-navbar-section h3 {
+  font-weight: normal;
+  margin: 5px 15px;
 }
 body .homepage-navbar-section-option {
   display: flex;
@@ -341,13 +400,38 @@ body .homepage-navbar-section-option {
     padding: 15px;
   }
 }
+@media only screen and (min-width: 1200px) {
+  body .homepage-navbar-section-option {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    padding: 10px 15px;
+  }
+}
 body .homepage-navbar-section-option ion-icon {
-  font-size: 1.5rem;
   margin-bottom: 3px;
+}
+@media only screen and (min-width: 1200px) {
+  body .homepage-navbar-section-option ion-icon {
+    margin-bottom: 0;
+  }
+}
+body .homepage-navbar-section-option p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 @media only screen and (min-width: 900px) {
   body .homepage-navbar-section-option p {
     font-size: 0.9rem;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  body .homepage-navbar-section-option p {
+    font-size: 1rem;
   }
 }
 body .homepage-navbar-section-option:hover {
@@ -365,7 +449,7 @@ body .homepage-main {
 }
 @media only screen and (min-width: 1200px) {
   body .homepage-main {
-    width: calc(100% - 250px);
+    width: calc(100% - 220px);
   }
 }
 body .videopage {

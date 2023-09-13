@@ -286,11 +286,42 @@ body {
       }
 
       @include mixins.for-desktop-up{
-        width: 250px;
+        width: 220px;
+        height: calc(100vh - 60px);
+        padding: 10px;
+        overflow-y: scroll;
       }
 
       &-section{
         display: none;
+
+        @include mixins.for-desktop-up{
+          @include mixins.flex(center, start);
+          flex-direction: column;
+          width: 100%;
+          padding: 15px 0;
+          border-top: 1px solid variables.$color-gray-01;
+
+          &:nth-of-type(1){
+            border-top: 0;
+            padding-top: 0;
+          }
+
+          &:nth-of-type(3){
+
+            p, button{
+              margin: 5px 15px;
+            }
+
+            p{
+              line-height: 1.5rem;
+            }
+
+            button{
+              gap: 5px;
+            }
+          }
+        }
 
         &:nth-of-type(1), &:nth-of-type(2){
           @include mixins.flex(center, center);
@@ -309,10 +340,55 @@ body {
           }
         }
 
-        @include mixins.for-desktop-up{
-          @include mixins.flex(center, center);
-          flex-direction: column;
-          width: 100%;
+        &:nth-of-type(6){
+          ion-icon{
+            color: variables.$color-red-01;
+          }
+        }
+
+        &:last-of-type{
+          padding-bottom: 0;
+
+          .homepage-navbar-section-option{
+            flex-wrap: wrap;
+            gap: 5px;
+            font-size: .9rem;
+            font-weight: bold;
+
+            a{
+              color: variables.$color-gray-03;
+            }
+
+            &:hover{
+              background-color: initial;
+              cursor: initial;
+            }
+
+            p{
+              color: variables.$color-gray-03;
+              font-weight: normal;
+              font-size: .85rem;
+            }
+          }
+        }
+
+        .active-navbar{
+          background-color: variables.$color-gray-01;
+          color: variables.$color-black-02;
+          font-weight: 500;
+        }
+
+        ion-icon{
+          font-size: 1.5rem;
+
+          @include mixins.for-desktop-up{
+            font-size: 1.7rem;
+          }
+        }
+
+        h3{
+          font-weight: normal;
+          margin: 5px 15px;
         }
 
         &-option{
@@ -327,14 +403,30 @@ body {
             padding: 15px;
           }
 
+          @include mixins.for-desktop-up{
+            @include mixins.flex(flex-start, center);
+            flex-direction: row;
+            gap: 20px;
+            padding: 10px 15px;
+          }
+
           ion-icon{
-            font-size: 1.5rem;
             margin-bottom: 3px;
+
+            @include mixins.for-desktop-up{
+              margin-bottom: 0;
+            }
           }
 
           p{
+            @include mixins.text-overflow(1);
+
             @include mixins.for-tablet-landscape-up{
               font-size: .9rem;
+            }
+
+            @include mixins.for-desktop-up{
+              font-size: 1rem;
             }
           }
 
@@ -345,8 +437,6 @@ body {
           }
         }
       }
-
-
     }
 
     &-main{
@@ -357,7 +447,7 @@ body {
       }
 
       @include mixins.for-desktop-up{
-        width: calc(100% - 250px);
+        width: calc(100% - 220px);
       }
     }
   }
