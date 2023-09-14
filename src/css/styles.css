@@ -452,6 +452,45 @@ body .homepage-main {
     width: calc(100% - 220px);
   }
 }
+body .homepage-main-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 30px;
+}
+body .homepage-main-filter .active-filter-option, body .homepage-main-filter .active-filter-option:hover {
+  background-color: #0f0f0f;
+  color: #fff;
+}
+body .homepage-main-filter-set {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  width: calc(100% - 1.3rem - 20px);
+}
+body .homepage-main-filter-set-option {
+  background-color: #dedede;
+  padding: 10px;
+  border-radius: 10px;
+}
+body .homepage-main-filter-set-option:hover {
+  background-color: #d1d1d1;
+  cursor: pointer;
+}
+body .homepage-main-filter ion-icon {
+  font-size: 1.3rem;
+  padding: 10px;
+  box-shadow: 0 5px 20px 30px #fff;
+}
+body .homepage-main-filter ion-icon:hover {
+  background-color: #dedede;
+  cursor: pointer;
+  border-radius: 50%;
+}
 body .videopage {
   display: flex;
   justify-content: center;

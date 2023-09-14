@@ -1,6 +1,20 @@
+import {useState, useEffect} from 'react';
+import {getVideoCategories} from '../utils/functions';
+
 import Navbar from './Navbar';
 
 export default function HomePage(){
+    const [tagsFilter, setTagsFilter]= useState(null);
+
+    useEffect(() => {
+        getVideoCategories()
+            .then(res => setTagsFilter(res.map(
+                aux => ({
+                    title: aux.snippet.title.split(/(\s|\/)/)[0],
+                    id: aux.id
+                })
+            ))).catch(err => console.error(err));
+    }, []);
 
     return (
         <>
@@ -140,7 +154,17 @@ export default function HomePage(){
                     </div>
                 </nav>
                 <main className='homepage-main'>
-                    main
+                    <div className='homepage-main-filter'>
+                        <div className='homepage-main-filter-set'>
+                            <div key='filter-all' className='homepage-main-filter-set-option active-filter-option'>Tudo</div>
+                            {
+                                tagsFilter?.map(tag =>
+                                    <div key={`filter-${tag.id}`} className='homepage-main-filter-set-option'>{tag.title}</div>
+                                )
+                            }
+                        </div>
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
+                    </div>
                 </main>
             </div>
         </>

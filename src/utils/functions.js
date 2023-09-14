@@ -3,6 +3,7 @@ import {KEY_API_YOUTUBE} from '../data/keys';
 import {
     HTTP_COMMENTS, HTTP_SEARCH,
     HTTP_CHANNELS, HTTP_VIDEOS,
+    HTTP_VIDEO_CATEGORIES,
     URL_WATCH_VIDEO, URL_CHANNEL
 } from './urls';
 
@@ -131,6 +132,17 @@ export const getVideoData= async videoId => {
         id: videoId,
         maxResults: 1
     })).then(res => res.data.items[0])
+    .catch(err => console.error(err));
+};
+
+export const getVideoCategories= async () => {
+
+    return await axios.get(HTTP_VIDEO_CATEGORIES + new URLSearchParams({
+        key: KEY_API_YOUTUBE,
+        part: 'snippet',
+        regionCode: 'BR',
+        hl: 'pt'
+    })).then(res => res.data.items)
     .catch(err => console.error(err));
 };
 

@@ -449,6 +449,48 @@ body {
       @include mixins.for-desktop-up{
         width: calc(100% - 220px);
       }
+
+      &-filter{
+        @include mixins.flex(center, center);
+        width: 100%;
+        padding: 0 30px;
+
+        .active-filter-option, .active-filter-option:hover{
+          background-color: variables.$color-black-02;
+          color: variables.$color-white-01;
+        }
+
+        &-set{
+          @include mixins.flex(flex-start, center);
+          gap: 15px;
+          flex-wrap: nowrap;
+          overflow: hidden;
+          width: calc(100% - 1.3rem - 20px);
+
+          &-option{
+            background-color: variables.$color-gray-01;
+            padding: 10px;
+            border-radius: 10px;
+
+            &:hover{
+              background-color: variables.$color-gray-02;
+              cursor: pointer;
+            }
+          }
+        }
+
+        ion-icon{
+          font-size: 1.3rem;
+          padding: 10px;
+          box-shadow: 0 5px 20px 30px variables.$color-white-01;
+
+          &:hover{
+            background-color: variables.$color-gray-01;
+            cursor: pointer;
+            border-radius: 50%;
+          }
+        }
+      }
     }
   }
 
