@@ -262,7 +262,6 @@ body {
 
   .homepage{
     position: relative;
-    @include mixins.flex(center, start);
 
     &-navbar{
       background-color: variables.$color-white-01;
@@ -272,6 +271,7 @@ body {
       left: 0;
       width: 100%;
       border-top: 1px solid variables.$color-gray-01;
+      z-index: 1;
 
       @include mixins.for-phone-only{
         display: none;
@@ -280,7 +280,8 @@ body {
       @include mixins.for-tablet-landscape-up{
         @include mixins.flex(flex-start, center);
         flex-direction: column;
-        position: static;
+        bottom: initial;
+		    top: 60px;
         width: 80px;
         height: 100%;
         border-top: 0;
@@ -442,15 +443,20 @@ body {
 
     &-main{
       width: 100%;
-      margin-bottom: 50px;
+      padding-bottom: 50px;
+      position: absolute;
+      top: 0;
+      left: 0;
 
       @include mixins.for-phone-only{
-        margin-bottom: 0;
+        padding-bottom: 0;
       }
 
       @include mixins.for-tablet-landscape-up{
         width: calc(100% - 80px);
-        margin-bottom: 0;
+        left: initial;
+		    right: 0;
+        padding-bottom: 0;
       }
 
       @include mixins.for-desktop-up{

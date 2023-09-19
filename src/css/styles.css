@@ -261,9 +261,6 @@ body .homepage, body .videopage {
 }
 body .homepage {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: start;
 }
 body .homepage-navbar {
   background-color: #fff;
@@ -275,6 +272,7 @@ body .homepage-navbar {
   left: 0;
   width: 100%;
   border-top: 1px solid #dedede;
+  z-index: 1;
 }
 @media only screen and (max-width: 400px) {
   body .homepage-navbar {
@@ -287,7 +285,8 @@ body .homepage-navbar {
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    position: static;
+    bottom: initial;
+    top: 60px;
     width: 80px;
     height: 100%;
     border-top: 0;
@@ -442,17 +441,22 @@ body .homepage-navbar-section-option:hover {
 }
 body .homepage-main {
   width: 100%;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 @media only screen and (max-width: 400px) {
   body .homepage-main {
-    margin-bottom: 0;
+    padding-bottom: 0;
   }
 }
 @media only screen and (min-width: 900px) {
   body .homepage-main {
     width: calc(100% - 80px);
-    margin-bottom: 0;
+    left: initial;
+    right: 0;
+    padding-bottom: 0;
   }
 }
 @media only screen and (min-width: 1200px) {
