@@ -266,6 +266,7 @@ body .homepage {
   align-items: start;
 }
 body .homepage-navbar {
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -441,10 +442,17 @@ body .homepage-navbar-section-option:hover {
 }
 body .homepage-main {
   width: 100%;
+  margin-bottom: 50px;
+}
+@media only screen and (max-width: 400px) {
+  body .homepage-main {
+    margin-bottom: 0;
+  }
 }
 @media only screen and (min-width: 900px) {
   body .homepage-main {
     width: calc(100% - 80px);
+    margin-bottom: 0;
   }
 }
 @media only screen and (min-width: 1200px) {
@@ -484,12 +492,15 @@ body .homepage-main-filter-set-option:hover {
 body .homepage-main-filter ion-icon {
   font-size: 1.3rem;
   padding: 10px;
-  box-shadow: 0 5px 20px 30px #fff;
+  box-shadow: 0 0 15px 10px #fff;
 }
 body .homepage-main-filter ion-icon:hover {
   background-color: #dedede;
   cursor: pointer;
   border-radius: 50%;
+}
+body .homepage-main-feed {
+  padding: 15px 0;
 }
 body .videopage {
   display: flex;

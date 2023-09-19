@@ -265,6 +265,7 @@ body {
     @include mixins.flex(center, start);
 
     &-navbar{
+      background-color: variables.$color-white-01;
       @include mixins.flex(center, center);
       position: fixed;
       bottom: 0;
@@ -441,9 +442,15 @@ body {
 
     &-main{
       width: 100%;
+      margin-bottom: 50px;
+
+      @include mixins.for-phone-only{
+        margin-bottom: 0;
+      }
 
       @include mixins.for-tablet-landscape-up{
         width: calc(100% - 80px);
+        margin-bottom: 0;
       }
 
       @include mixins.for-desktop-up{
@@ -482,7 +489,7 @@ body {
         ion-icon{
           font-size: 1.3rem;
           padding: 10px;
-          box-shadow: 0 5px 20px 30px variables.$color-white-01;
+          box-shadow: 0 0 15px 10px variables.$color-white-01;
 
           &:hover{
             background-color: variables.$color-gray-01;
@@ -490,6 +497,10 @@ body {
             border-radius: 50%;
           }
         }
+      }
+
+      &-feed{
+        padding: 15px 0;
       }
     }
   }
