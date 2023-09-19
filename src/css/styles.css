@@ -465,11 +465,15 @@ body .homepage-main {
   }
 }
 body .homepage-main-filter {
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 0 30px;
+  position: sticky;
+  top: 60px;
+  right: 0;
+  padding: 0 30px 15px 30px;
 }
 body .homepage-main-filter .active-filter-option, body .homepage-main-filter .active-filter-option:hover {
   background-color: #0f0f0f;
@@ -504,7 +508,7 @@ body .homepage-main-filter ion-icon:hover {
   border-radius: 50%;
 }
 body .homepage-main-feed {
-  padding: 15px 0;
+  padding: 10px 0;
 }
 body .videopage {
   display: flex;

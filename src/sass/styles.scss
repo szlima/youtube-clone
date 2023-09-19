@@ -464,9 +464,13 @@ body {
       }
 
       &-filter{
+        background-color: variables.$color-white-01;
         @include mixins.flex(center, center);
         width: 100%;
-        padding: 0 30px;
+        position: sticky;
+        top: 60px;
+        right: 0;
+        padding: 0 30px 15px 30px;
 
         .active-filter-option, .active-filter-option:hover{
           background-color: variables.$color-black-02;
@@ -506,7 +510,7 @@ body {
       }
 
       &-feed{
-        padding: 15px 0;
+        padding: 10px 0;
       }
     }
   }
