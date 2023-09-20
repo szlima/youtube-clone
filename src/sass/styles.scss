@@ -510,7 +510,62 @@ body {
       }
 
       &-feed{
+        position: relative;
         padding: 10px 0;
+
+        &-promo{
+          padding: 20px 40px;
+          height: 250px;
+          @include mixins.flex(space-between, start);
+          flex-direction: column;
+
+          @include mixins.for-tablet-portrait-up{
+            background-image: url('../img/youtube-premium2.png');
+            background-size: 1200px;
+            background-position: left top;
+            background-repeat: no-repeat;
+          }
+
+          ion-icon{
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            font-size: 1.8rem;
+            color: variables.$color-white-01;
+            background-color: variables.$color-black-03;
+            border-radius: 50%;
+            padding: 5px;
+
+            &:hover{
+              background-color: variables.$color-black-04;
+              cursor: pointer;
+            }
+          }
+
+          img{
+            width: 300px;
+          }
+
+          p{
+            max-width: 470px;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0;
+            line-height: 3rem;
+          }
+
+          button{
+            border: 1px solid variables.$color-blue-03;
+            border-radius: 50px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-weight: 500;
+
+            &:hover{
+              background-color: variables.$color-gray-01;
+            }
+          }
+        }
       }
     }
   }

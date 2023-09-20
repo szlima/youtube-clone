@@ -166,6 +166,12 @@ export default function HomePage(){
                         <ion-icon name="chevron-forward-outline"></ion-icon>
                     </div>
                     <div className='homepage-main-feed'>
+                        <div className='homepage-main-feed-promo'>
+                            <ion-icon name="close-outline"></ion-icon>
+                            <img src='../src/img/youtube-premium1.png'/>
+                            <p>Assista tudo que gosta sem anúncios</p>
+                            <button>Baixe agora</button>
+                        </div>
                     </div>
                 </main>
             </div>
