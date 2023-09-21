@@ -146,6 +146,20 @@ export const getVideoCategories= async () => {
     .catch(err => console.error(err));
 };
 
+export const getVideos= async (maxResults, videoCategoryId) => {
+
+    return await axios.get(HTTP_VIDEOS + new URLSearchParams({
+          key: KEY_API_YOUTUBE,
+          part: 'snippet',
+          chart: 'mostPopular',
+          regionCode: 'BR',
+          hl: 'pt',
+          maxResults,
+          videoCategoryId
+    })).then(res => res.data.items)
+    .catch(err => console.error(err));
+};
+
 export const getURLVideo= videoId => URL_WATCH_VIDEO.concat(videoId);
 
 export const getURLChannel= channelId => URL_CHANNEL.concat(channelId);

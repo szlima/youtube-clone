@@ -6,12 +6,12 @@ import {
     getURLVideo, getURLChannel
 } from '../utils/functions';
 
-export default function CompactVideo({video}){
+export default function CompactVideo({video, id}){
     const [videoData, setVideoData]= useState(null);
     const [channelData, setChannelData]= useState(null);
 
     useEffect(() => {
-        getVideoData(video.id.videoId)
+        getVideoData(id)
             .then(res => setVideoData(res))
             .catch(err => console.error(err));
 

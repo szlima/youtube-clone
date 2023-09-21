@@ -116,7 +116,7 @@ export default function VideoPage({video}){
                                 relatedVideos?.items.map(value => {
                                     if(value.id.videoId === video.id)
                                         return;
-                                    return <CompactVideo video={value} key={value.id.videoId}/>;
+                                    return <CompactVideo video={value} id={value.id.videoId} key={value.id.videoId}/>;
                                 })
                             }
                         </nav>

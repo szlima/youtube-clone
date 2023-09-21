@@ -1,10 +1,14 @@
 import {useState, useEffect} from 'react';
-import {getVideoCategories} from '../utils/functions';
+import {
+    getVideoCategories, getVideos
+} from '../utils/functions';
 
 import Navbar from './Navbar';
+import CompactVideo from './CompactVideo';
 
 export default function HomePage(){
     const [tagsFilter, setTagsFilter]= useState(null);
+    const [popularVideos, setPopularVideos]= useState(null);
 
     useEffect(() => {
         getVideoCategories()
@@ -14,12 +18,16 @@ export default function HomePage(){
                     id: aux.id
                 })
             ))).catch(err => console.error(err));
+
+        getVideos(6, 0)
+        .then(res => setPopularVideos(res))
+        .catch(err => console.error(err));
+
     }, []);
 
     return (
         <>
             <Navbar />
-            
             <div className='homepage'>
                 <nav className='homepage-navbar'>
                     <div className='homepage-navbar-section'>
@@ -171,6 +179,11 @@ export default function HomePage(){
                             <img src='../src/img/youtube-premium1.png'/>
                             <p>Assista tudo que gosta sem anúncios</p>
                             <button>Baixe agora</button>
+                        </div>
+                        <div className='homepage-main-feed-videos'>
+                            {
+                                popularVideos?.map(value => <CompactVideo video={value} id={value.id} key={value.id}/>)
+                            }
                         </div>
                     </div>
                 </main>
