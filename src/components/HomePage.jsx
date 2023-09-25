@@ -9,6 +9,7 @@ import CompactVideo from './CompactVideo';
 export default function HomePage(){
     const [tagsFilter, setTagsFilter]= useState(null);
     const [popularVideos, setPopularVideos]= useState(null);
+    const [newsVideos, setNewsVideos]= useState(null);
 
     useEffect(() => {
         getVideoCategories()
@@ -20,8 +21,12 @@ export default function HomePage(){
             ))).catch(err => console.error(err));
 
         getVideos(6, 0)
-        .then(res => setPopularVideos(res))
-        .catch(err => console.error(err));
+            .then(res => setPopularVideos(res))
+            .catch(err => console.error(err));
+
+        getVideos(3, 25)
+            .then(res => setNewsVideos(res))
+            .catch(err => console.error(err));
 
     }, []);
 
@@ -183,6 +188,11 @@ export default function HomePage(){
                         <div className='homepage-main-feed-videos'>
                             {
                                 popularVideos?.map(value => <CompactVideo video={value} id={value.id} key={value.id}/>)
+                            }
+                        </div>
+                        <div className='homepage-main-feed-videos videos-set-compact'>
+                            {
+                                newsVideos?.map(value => <CompactVideo video={value} id={value.id} key={value.id}/>)
                             }
                         </div>
                     </div>

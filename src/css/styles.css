@@ -707,6 +707,16 @@ body .homepage-main-feed-videos .compact-video-info-text-data-channel, body .hom
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+@media only screen and (min-width: 900px) {
+  body .homepage-main-feed .videos-set-compact .compact-video:last-of-type {
+    display: none;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  body .homepage-main-feed .videos-set-compact .compact-video:last-of-type {
+    display: initial;
+  }
+}
 body .videopage {
   display: flex;
   justify-content: center;

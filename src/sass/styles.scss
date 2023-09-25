@@ -725,6 +725,24 @@ body {
             }
           }
         }
+
+        .videos-set-compact{
+
+          .compact-video{
+
+            @include mixins.for-tablet-landscape-up{
+              &:last-of-type{
+                display: none;
+              }
+            }
+
+            @include mixins.for-desktop-up{
+              &:last-of-type{
+                display: initial;
+              }
+            }
+          }
+        }
       }
     }
   }
