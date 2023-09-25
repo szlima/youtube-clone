@@ -664,6 +664,10 @@ body .homepage-main-feed-videos::after {
   border-bottom: 5px solid #dedede;
   margin: 0 30px;
 }
+body .homepage-main-feed-videos:last-of-type::after {
+  border: 0;
+  margin: 0;
+}
 @media only screen and (min-width: 900px) {
   body .homepage-main-feed-videos .compact-video {
     width: 45%;
