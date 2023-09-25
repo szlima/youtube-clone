@@ -30,6 +30,14 @@ export default function HomePage(){
 
     }, []);
 
+    const showVideos= (videosSet, isCompactSet) => {
+        return (
+            <div className={`homepage-main-feed-videos ${isCompactSet ? 'videos-set-compact' : ''}`}>
+                {videosSet?.map(value => <CompactVideo video={value} id={value.id} key={value.id}/>)}
+            </div>
+        );
+    };
+
     return (
         <>
             <Navbar />
@@ -185,16 +193,8 @@ export default function HomePage(){
                             <p>Assista tudo que gosta sem anúncios</p>
                             <button>Baixe agora</button>
                         </div>
-                        <div className='homepage-main-feed-videos'>
-                            {
-                                popularVideos?.map(value => <CompactVideo video={value} id={value.id} key={value.id}/>)
-                            }
-                        </div>
-                        <div className='homepage-main-feed-videos videos-set-compact'>
-                            {
-                                newsVideos?.map(value => <CompactVideo video={value} id={value.id} key={value.id}/>)
-                            }
-                        </div>
+                        {showVideos(popularVideos, false)}
+                        {showVideos(newsVideos, true)}
                     </div>
                 </main>
             </div>
