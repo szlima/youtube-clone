@@ -11,6 +11,7 @@ export default function HomePage(){
     const [popularVideos, setPopularVideos]= useState(null);
     const [newsVideos, setNewsVideos]= useState(null);
     const [sportsVideos, setSportsVideos]= useState(null);
+    const [musicVideos, setMusicVideos]= useState(null);
 
     useEffect(() => {
         getVideoCategories()
@@ -31,6 +32,10 @@ export default function HomePage(){
 
         getVideos(3, 17)
             .then(res => setSportsVideos(res))
+            .catch(err => console.error(err));
+
+        getVideos(3, 10)
+            .then(res => setMusicVideos(res))
             .catch(err => console.error(err));
 
     }, []);
@@ -201,6 +206,7 @@ export default function HomePage(){
                         {showVideos(popularVideos, false)}
                         {showVideos(newsVideos, true)}
                         {showVideos(sportsVideos, true)}
+                        {showVideos(musicVideos, true)}
                     </div>
                 </main>
             </div>
