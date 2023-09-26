@@ -10,6 +10,7 @@ export default function HomePage(){
     const [tagsFilter, setTagsFilter]= useState(null);
     const [popularVideos, setPopularVideos]= useState(null);
     const [newsVideos, setNewsVideos]= useState(null);
+    const [sportsVideos, setSportsVideos]= useState(null);
 
     useEffect(() => {
         getVideoCategories()
@@ -26,6 +27,10 @@ export default function HomePage(){
 
         getVideos(3, 25)
             .then(res => setNewsVideos(res))
+            .catch(err => console.error(err));
+
+        getVideos(3, 17)
+            .then(res => setSportsVideos(res))
             .catch(err => console.error(err));
 
     }, []);
@@ -195,6 +200,7 @@ export default function HomePage(){
                         </div>
                         {showVideos(popularVideos, false)}
                         {showVideos(newsVideos, true)}
+                        {showVideos(sportsVideos, true)}
                     </div>
                 </main>
             </div>
