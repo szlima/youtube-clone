@@ -162,11 +162,6 @@ body {
       gap: 15px;
     }
 
-    @include mixins.for-big-desktop-up{
-      width: variables.$size-min-big-desktop;
-      margin: auto;
-   }
-
     &-toggle{
       @include mixins.flex(space-between, center);
       margin-right: 10px;
@@ -607,11 +602,13 @@ body {
       }
 
       &-feed{
-        position: relative;
         padding: 10px 0;
 
         &-promo{
+          position: relative;
           padding: 20px 40px;
+          margin: auto;
+          max-width: 1300px;
           height: 250px;
           @include mixins.flex(space-between, start);
           flex-direction: column;
@@ -626,7 +623,7 @@ body {
           ion-icon{
             position: absolute;
             right: 10px;
-            top: 20px;
+            top: 10px;
             font-size: 1.8rem;
             color: variables.$color-white-01;
             background-color: variables.$color-black-03;

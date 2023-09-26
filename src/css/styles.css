@@ -151,12 +151,6 @@ body .navbar {
     gap: 15px;
   }
 }
-@media only screen and (min-width: 1800px) {
-  body .navbar {
-    width: 1800px;
-    margin: auto;
-  }
-}
 body .navbar-toggle {
   display: flex;
   justify-content: space-between;
@@ -592,11 +586,13 @@ body .homepage-main-filter ion-icon:hover {
   border-radius: 50%;
 }
 body .homepage-main-feed {
-  position: relative;
   padding: 10px 0;
 }
 body .homepage-main-feed-promo {
+  position: relative;
   padding: 20px 40px;
+  margin: auto;
+  max-width: 1300px;
   height: 250px;
   display: flex;
   justify-content: space-between;
@@ -614,7 +610,7 @@ body .homepage-main-feed-promo {
 body .homepage-main-feed-promo ion-icon {
   position: absolute;
   right: 10px;
-  top: 20px;
+  top: 10px;
   font-size: 1.8rem;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.5);
