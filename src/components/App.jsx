@@ -1,7 +1,9 @@
+import {connect} from 'react-redux';
+
 import HomePage from "./HomePage";
 import VideoPage from "./VideoPage";
 
-export default function App() {
+function App({videoId}) {
 
   const videoTeste= {
     id: 'LlMKAh438nA',
@@ -22,8 +24,16 @@ export default function App() {
 
   return (
     <>
-      {/* <VideoPage video={videoTeste}/> */}
-      <HomePage />
+      {videoId ?
+        <VideoPage video={videoTeste}/> :
+        <HomePage />
+      }
     </>
   )
-}
+};
+
+const mapStateToProps= state => ({
+  videoId: state.youtubeReducer.videoId
+});
+
+export default connect(mapStateToProps)(App);
