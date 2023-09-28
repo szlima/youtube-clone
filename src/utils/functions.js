@@ -7,6 +7,25 @@ import {
     URL_WATCH_VIDEO, URL_CHANNEL
 } from './urls';
 
+export const getFeedHomepage= async () => {
+
+    const tagsFilter= getVideoCategories();
+    const popularVideos= getVideos(6, 0);
+    const newsVideos= getVideos(3, 25);
+    const sportsVideos= getVideos(3, 17);
+    const musicVideos= getVideos(3, 10);
+
+    return Promise.all([
+        tagsFilter, popularVideos, newsVideos,
+        sportsVideos, musicVideos
+    ]).then(res => {
+        if(res.some(p => p === undefined))
+            throw new Error('Ocorreu um erro na resolução das Promises.');
+        else
+            return res;
+    }).catch(err => console.error(err));
+};
+
 export const getInfoDate= _initialDate => {
     const initialDate= new Date(_initialDate);
     const currentDate= new Date();
@@ -142,8 +161,12 @@ export const getVideoCategories= async () => {
         part: 'snippet',
         regionCode: 'BR',
         hl: 'pt'
-    })).then(res => res.data.items)
-    .catch(err => console.error(err));
+    })).then(res => res.data.items.map(
+        aux => ({
+            title: aux.snippet.title.split(/(\s|\/)/)[0],
+            id: aux.id
+        })
+    )).catch(err => console.error(err));
 };
 
 export const getVideos= async (maxResults, videoCategoryId) => {

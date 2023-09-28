@@ -1,44 +1,12 @@
-import {useState, useEffect} from 'react';
-import {
-    getVideoCategories, getVideos
-} from '../utils/functions';
+import {connect} from 'react-redux';
 
 import Navbar from './Navbar';
 import CompactVideo from './CompactVideo';
 
-export default function HomePage(){
-    const [tagsFilter, setTagsFilter]= useState(null);
-    const [popularVideos, setPopularVideos]= useState(null);
-    const [newsVideos, setNewsVideos]= useState(null);
-    const [sportsVideos, setSportsVideos]= useState(null);
-    const [musicVideos, setMusicVideos]= useState(null);
-
-    useEffect(() => {
-        getVideoCategories()
-            .then(res => setTagsFilter(res.map(
-                aux => ({
-                    title: aux.snippet.title.split(/(\s|\/)/)[0],
-                    id: aux.id
-                })
-            ))).catch(err => console.error(err));
-
-        getVideos(6, 0)
-            .then(res => setPopularVideos(res))
-            .catch(err => console.error(err));
-
-        getVideos(3, 25)
-            .then(res => setNewsVideos(res))
-            .catch(err => console.error(err));
-
-        getVideos(3, 17)
-            .then(res => setSportsVideos(res))
-            .catch(err => console.error(err));
-
-        getVideos(3, 10)
-            .then(res => setMusicVideos(res))
-            .catch(err => console.error(err));
-
-    }, []);
+function HomePage({
+    loadingFeed, errorFeed, tagsFilter,
+    popularVideos, newsVideos, sportsVideos, musicVideos
+}){
 
     const showVideos= (videosSet, isCompactSet) => {
         return (
@@ -184,7 +152,20 @@ export default function HomePage(){
                         </div>
                     </div>
                 </nav>
-                <main className='homepage-main'>
+                <main className={`homepage-main
+                    ${(!!loadingFeed | !!errorFeed) ? 'homepage-main-unavailable' : ''}
+                `}>
+                    <div className='homepage-main-unavailable-msg'
+                        style={!loadingFeed ? {display: 'none'} : {}}>
+                        <p>(...)</p>
+                        <p>Carregando</p>
+                    </div>
+
+                    <div className='homepage-main-unavailable-msg'
+                        style={!errorFeed ? {display: 'none'} : {}}>
+                        <p>{errorFeed}</p>
+                    </div>
+
                     <div className='homepage-main-filter'>
                         <div className='homepage-main-filter-set'>
                             <div key='filter-all' className='homepage-main-filter-set-option active-filter-option'>Tudo</div>
@@ -212,4 +193,16 @@ export default function HomePage(){
             </div>
         </>
     );
-}
+};
+
+const mapStateToProps= state => ({
+    loadingFeed: state.youtubeReducer.loadingFeed,
+    errorFeed: state.youtubeReducer.errorFeed,
+    tagsFilter: state.youtubeReducer.tagsFilter,
+    popularVideos: state.youtubeReducer.videosFeed.popularVideos,
+    newsVideos: state.youtubeReducer.videosFeed.newsVideos,
+    sportsVideos: state.youtubeReducer.videosFeed.sportsVideos,
+    musicVideos: state.youtubeReducer.videosFeed.musicVideos
+});
+
+export default connect(mapStateToProps)(HomePage);

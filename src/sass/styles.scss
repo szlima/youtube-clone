@@ -750,6 +750,25 @@ body {
         }
       }
     }
+
+    &-main-unavailable{
+      @include mixins.flex(center, center);
+      height: 100%;
+
+      &-msg{
+        display: initial;
+        @include mixins.flex(center, center);
+        flex-direction: column;
+        gap: 20px;
+        font-size: 2rem;
+        color: variables.$color-black-01;
+        text-align: center;
+      }
+
+      .homepage-main-filter, .homepage-main-feed{
+        display: none;
+      }
+    }
   }
 
   .videopage{

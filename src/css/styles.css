@@ -717,6 +717,26 @@ body .homepage-main-feed-videos .compact-video-info-text-data-channel, body .hom
     display: initial;
   }
 }
+body .homepage-main-unavailable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+body .homepage-main-unavailable-msg {
+  display: initial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 2rem;
+  color: #282828;
+  text-align: center;
+}
+body .homepage-main-unavailable .homepage-main-filter, body .homepage-main-unavailable .homepage-main-feed {
+  display: none;
+}
 body .videopage {
   display: flex;
   justify-content: center;

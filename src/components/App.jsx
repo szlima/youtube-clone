@@ -1,9 +1,17 @@
+import {useEffect} from 'react';
 import {connect} from 'react-redux';
 
 import HomePage from "./HomePage";
 import VideoPage from "./VideoPage";
 
-function App({videoId}) {
+import {loadFeedAction} from '../redux/actions/actionCreators';
+
+function App({videoId, loadFeed}) {
+
+  useEffect(() => {
+
+    loadFeed();
+  }, []);
 
   const videoTeste= {
     id: 'LlMKAh438nA',
@@ -36,4 +44,8 @@ const mapStateToProps= state => ({
   videoId: state.youtubeReducer.videoId
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps= dispatch => ({
+  loadFeed: () => dispatch(loadFeedAction())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
