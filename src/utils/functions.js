@@ -3,8 +3,28 @@ import {KEY_API_YOUTUBE} from '../data/keys';
 import {
     HTTP_COMMENTS, HTTP_SEARCH,
     HTTP_CHANNELS, HTTP_VIDEOS,
+    HTTP_VIDEO_CATEGORIES,
     URL_WATCH_VIDEO, URL_CHANNEL
 } from './urls';
+
+export const getFeedHomepage= async () => {
+
+    const tagsFilter= getVideoCategories();
+    const popularVideos= getVideos(6, 0);
+    const newsVideos= getVideos(3, 25);
+    const sportsVideos= getVideos(3, 17);
+    const musicVideos= getVideos(3, 10);
+
+    return Promise.all([
+        tagsFilter, popularVideos, newsVideos,
+        sportsVideos, musicVideos
+    ]).then(res => {
+        if(res.some(p => p === undefined))
+            throw new Error('Ocorreu um erro na resolução das Promises.');
+        else
+            return res;
+    }).catch(err => console.error(err));
+};
 
 export const getInfoDate= _initialDate => {
     const initialDate= new Date(_initialDate);
@@ -131,6 +151,35 @@ export const getVideoData= async videoId => {
         id: videoId,
         maxResults: 1
     })).then(res => res.data.items[0])
+    .catch(err => console.error(err));
+};
+
+export const getVideoCategories= async () => {
+
+    return await axios.get(HTTP_VIDEO_CATEGORIES + new URLSearchParams({
+        key: KEY_API_YOUTUBE,
+        part: 'snippet',
+        regionCode: 'BR',
+        hl: 'pt'
+    })).then(res => res.data.items.map(
+        aux => ({
+            title: aux.snippet.title.split(/(\s|\/)/)[0],
+            id: aux.id
+        })
+    )).catch(err => console.error(err));
+};
+
+export const getVideos= async (maxResults, videoCategoryId) => {
+
+    return await axios.get(HTTP_VIDEOS + new URLSearchParams({
+          key: KEY_API_YOUTUBE,
+          part: 'snippet',
+          chart: 'mostPopular',
+          regionCode: 'BR',
+          hl: 'pt',
+          maxResults,
+          videoCategoryId
+    })).then(res => res.data.items)
     .catch(err => console.error(err));
 };
 

@@ -6,12 +6,12 @@ import {
     getURLVideo, getURLChannel
 } from '../utils/functions';
 
-export default function CompactVideo({video}){
+export default function CompactVideo({video, id}){
     const [videoData, setVideoData]= useState(null);
     const [channelData, setChannelData]= useState(null);
 
     useEffect(() => {
-        getVideoData(video.id.videoId)
+        getVideoData(id)
             .then(res => setVideoData(res))
             .catch(err => console.error(err));
 
@@ -23,7 +23,7 @@ export default function CompactVideo({video}){
     return (
         <>
             <div className='compact-video'>
-                <a href={getURLVideo(video.id.videoId)} className='compact-video-img'>
+                <a href={getURLVideo(id)} className='compact-video-img'>
                     <img className='image' src={video.snippet.thumbnails.high.url}/>
                     <span className='compact-video-img-duration'>{getInfoDuration(videoData?.contentDetails.duration)}</span>
                 </a>
@@ -32,7 +32,7 @@ export default function CompactVideo({video}){
                         <img className='compact-video-info-logo' src={channelData?.snippet.thumbnails.default.url}/>
                     </a>
                     <div className='compact-video-info-text'>
-                        <a href={getURLVideo(video.id.videoId)} className='compact-video-info-text-title'>{video.snippet.title}</a>
+                        <a href={getURLVideo(id)} className='compact-video-info-text-title'>{video.snippet.title}</a>
                         <div className='compact-video-info-text-data'>
                             <a href={getURLChannel(video.snippet.channelId)} className='compact-video-info-text-data-channel'>{video.snippet.channelTitle}</a>
                             <span className='compact-video-info-text-data-info'>

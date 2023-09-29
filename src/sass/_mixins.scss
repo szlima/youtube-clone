@@ -13,6 +13,12 @@
     -webkit-box-orient: vertical;
 }
 
+@mixin for-phone-only {
+    @media only screen and (max-width: variables.$size-min-any-device) {
+        @content;
+    }
+}
+
 @mixin for-tablet-portrait-up{
     @media only screen and (min-width: variables.$size-min-tablet-portrait){
         @content;
