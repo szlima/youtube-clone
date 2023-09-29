@@ -111,7 +111,7 @@ export default function VideoPage({video}){
                                 </div>
                             </div>
                         </main>
-                        <nav className="videopage-available-related">
+                        <aside className="videopage-available-related">
                             {
                                 relatedVideos?.items.map(value => {
                                     if(value.id.videoId === video.id)
@@ -119,7 +119,7 @@ export default function VideoPage({video}){
                                     return <CompactVideo video={value} id={value.id.videoId} key={value.id.videoId}/>;
                                 })
                             }
-                        </nav>
+                        </aside>
                     </div>
                 :
                     <main className="videopage-unavailable">
