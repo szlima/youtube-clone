@@ -51,23 +51,43 @@ export const getInfoDate= _initialDate => {
                         'há poucos segundos';
 };
 
+const getInfoCount= total => {
+
+    const getFloor= measure => Math.floor(total/measure);
+
+    const billion= (() => getFloor(1000000000))();
+    const million= (() => getFloor(1000000))();
+    const thousand= (() => getFloor(1000))();
+
+    return billion >= 1 ?
+        `${billion} bi` :
+        million >= 1 ?
+            `${million} mi` :
+            thousand >= 1 ?
+                `${thousand} mil` :
+                `${total}`;
+};
+
 export const getInfoViews= totalViews => {
 
-    const getFloorViews= measure => Math.floor(totalViews/measure);
+    const info= getInfoCount(totalViews);
 
-    const billionViews= (() => getFloorViews(1000000000))();
-    const millionViews= (() => getFloorViews(1000000))();
-    const thousandViews= (() => getFloorViews(1000))();
+    if(info.includes('bi') || info.includes('mi'))
+        return `${info} de visualizações`;
 
-    return billionViews >= 1 ?
-        `${billionViews} bi de visualizações` :
-        millionViews >= 1 ?
-            `${millionViews} mi de visualizações` :
-            thousandViews >= 1 ?
-                `${thousandViews} mil visualizações` :
-                `${totalViews} visualizaç${totalViews==1 ? 'ão' : 'ões'}`;
-
+    return `${info} visualizaç${totalViews==1 ? 'ão' : 'ões'}`;
 };
+
+export const getInfoSubscribers= totalSubscribers => {
+    const info= getInfoCount(totalSubscribers);
+
+    if(info.includes('bi') || info.includes('mi'))
+        return `${info} de inscritos`;
+
+    return `${info} inscrito${totalSubscribers==1 ? '' : 's'}`;
+};
+
+export const getInfoLikes= totalLikes => getInfoCount(totalLikes);
 
 export const getInfoDuration= duration => {
 
@@ -101,7 +121,7 @@ export const getInfoDuration= duration => {
     return duration ?
         duration.startsWith("PT") ? getInfoTime() : "+24:00:00"
         : "";
-}
+};
 
 export const getCommentsList= async videoId => {
     
@@ -136,7 +156,7 @@ export const getChannelData= async channelId => {
 
     return await axios.get(HTTP_CHANNELS + new URLSearchParams({
         key: KEY_API_YOUTUBE,
-        part: 'snippet',
+        part: 'snippet, statistics',
         id: channelId,
         maxResults: 1
     })).then(res => res.data.items[0])
@@ -147,11 +167,14 @@ export const getVideoData= async videoId => {
 
     return await axios.get(HTTP_VIDEOS + new URLSearchParams({
         key: KEY_API_YOUTUBE,
-        part: 'contentDetails, statistics',
+        part: 'snippet, contentDetails, statistics',
         id: videoId,
         maxResults: 1
-    })).then(res => res.data.items[0])
-    .catch(err => console.error(err));
+    })).then(res => {
+        if(!res.data.items[0])
+            throw new Error('Vídeo não encontrado.');
+        return res.data.items[0];
+    });
 };
 
 export const getVideoCategories= async () => {

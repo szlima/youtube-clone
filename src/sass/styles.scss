@@ -66,6 +66,10 @@ body {
       position: relative;
       overflow: hidden;
 
+      &:hover{
+        cursor: pointer;
+      }
+
       .image{
         position: absolute;
         width: 100%;
@@ -115,6 +119,10 @@ body {
           margin-bottom: 2px;
           font-weight: 500;
           @include mixins.text-overflow(2);
+
+          &:hover{
+            cursor: pointer;
+          }
         }
 
         &-data{
@@ -1185,10 +1193,7 @@ body {
 
                     &-author{
                       font-weight: 500;
-
-                      &:hover{
-                        cursor: pointer;
-                      }
+                      color: variables.$color-black-02;
                     }
 
                     &-date{

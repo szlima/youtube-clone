@@ -1,7 +1,6 @@
-import {combineReducers, createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import ReduxThunk from 'redux-thunk';
 
-import youtubeReducer from './reducers/youtubeReducer';
-const indexReducer= combineReducers({youtubeReducer});
+import indexReducer from './reducers/indexReducer';
 
 export default createStore(indexReducer, {}, applyMiddleware(ReduxThunk));

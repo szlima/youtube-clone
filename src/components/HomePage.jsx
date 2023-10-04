@@ -196,13 +196,13 @@ function HomePage({
 };
 
 const mapStateToProps= state => ({
-    loadingFeed: state.youtubeReducer.loadingFeed,
-    errorFeed: state.youtubeReducer.errorFeed,
-    tagsFilter: state.youtubeReducer.tagsFilter,
-    popularVideos: state.youtubeReducer.videosFeed.popularVideos,
-    newsVideos: state.youtubeReducer.videosFeed.newsVideos,
-    sportsVideos: state.youtubeReducer.videosFeed.sportsVideos,
-    musicVideos: state.youtubeReducer.videosFeed.musicVideos
+    loadingFeed: state.homepageReducer.loadingFeed,
+    errorFeed: state.homepageReducer.errorFeed,
+    tagsFilter: state.homepageReducer.tagsFilter,
+    popularVideos: state.homepageReducer.videosFeed.popularVideos,
+    newsVideos: state.homepageReducer.videosFeed.newsVideos,
+    sportsVideos: state.homepageReducer.videosFeed.sportsVideos,
+    musicVideos: state.homepageReducer.videosFeed.musicVideos
 });
 
 export default connect(mapStateToProps)(HomePage);

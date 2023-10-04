@@ -20,7 +20,7 @@ export default function Comment({comment}){
             </a>
             <div className="comment-data">
                 <div className="comment-data-info">
-                    <span className="comment-data-info-author">{channelData?.snippet.customUrl}</span>
+                    <a href={comment.snippet.topLevelComment.snippet.authorChannelUrl} className="comment-data-info-author">{channelData?.snippet.customUrl}</a>
                     <span className="comment-data-info-date">{getInfoDate(comment.snippet.topLevelComment.snippet.publishedAt)}</span>
                 </div>
                 <span className="comment-data-text">

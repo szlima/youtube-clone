@@ -6,18 +6,19 @@ const initialState= {
     loadingFeed: false,
     errorFeed: '',
     videosFeed: {},
-    tagsFilter: [],
-    videoId: null
+    tagsFilter: []
 };
 
-export default function youtubeReducer(state= initialState, action){
+export default function homepageReducer(state= initialState, action){
 
     switch(action.type){
         case LOAD_FEED_START:
             return {
                 ...state,
                 loadingFeed: true,
-                errorFeed: ''
+                errorFeed: '',
+                videosFeed: {},
+                tagsFilter: []
             };
 
         case LOAD_FEED_SUCCESS:
