@@ -51,6 +51,8 @@ export const getInfoDate= _initialDate => {
                         'há poucos segundos';
 };
 
+export const getInfoComments= totalComments => Number(totalComments).toLocaleString();
+
 const getInfoCount= total => {
 
     const getFloor= measure => Math.floor(total/measure);

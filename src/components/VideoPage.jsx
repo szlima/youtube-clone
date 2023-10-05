@@ -6,7 +6,7 @@ import Comment from './Comment';
 import CompactVideo from './CompactVideo';
 
 import {
-    getInfoDate, getInfoViews,
+    getInfoDate, getInfoComments, getInfoViews,
     getInfoLikes, getInfoSubscribers,
     getCommentsList, getRelatedVideosList,
     getChannelData, getURLChannel
@@ -110,7 +110,7 @@ function VideoPage({loadingVideo, errorVideo, video}){
                             <div className='videopage-available-player-comments'>
                                 <div className={`videopage-available-player-comments-wrap ${comments?.pageInfo.totalResults > 0 ? '' : 'no-comment-list'}`}>
                                     <div className='videopage-available-player-comments-header'>
-                                        <span className='total-comments'>Comentários<span className='total-comments-number'>{video.statistics.commentCount}</span></span>
+                                        <span className='total-comments'>Comentários<span className='total-comments-number'>{getInfoComments(video.statistics.commentCount)}</span></span>
                                         <span className='expand-comments'>
                                             <ion-icon name="chevron-expand-outline"></ion-icon>
                                         </span>
