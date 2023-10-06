@@ -786,6 +786,10 @@ body {
       padding: 0 20px;
     }
 
+    @include mixins.for-desktop-up{
+      padding: 0 50px;
+    }
+
     &-available{
       width: 100%;
       height: 100%;
@@ -797,12 +801,13 @@ body {
       }
 
       @include mixins.for-desktop-up{
-        width: calc(100% - 200px);
-        gap: 30px;
+        width: 100%;
+        gap: 20px;
       }
 
       @include mixins.for-big-desktop-up{
         width: variables.$size-min-big-desktop - 40px;
+        gap: 30px;
       }
 
       &-player{
@@ -811,7 +816,11 @@ body {
         flex-direction: column;
 
         @include mixins.for-desktop-up{
-          width: calc(100% - 400px - 30px);
+          width: calc(100% - 450px - 20px);
+        }
+
+        @include mixins.for-big-desktop-up{
+          width: calc(100% - 450px - 30px);
         }
 
         &-video{
@@ -1281,7 +1290,7 @@ body {
         margin: 10px 0;
 
         @include mixins.for-desktop-up{
-          width: 400px;
+          width: 450px;
           margin: 0;
         }
 
