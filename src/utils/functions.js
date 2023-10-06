@@ -26,7 +26,7 @@ export const getFeedHomepage= async () => {
     }).catch(err => console.error(err));
 };
 
-export const getCompactVideo= async (videoId, channelId) => {
+export const getCompactVideoData= async (videoId, channelId) => {
 
     const videoData= getVideoData(videoId);
     const channelData= getChannelData(channelId);
@@ -38,6 +38,24 @@ export const getCompactVideo= async (videoId, channelId) => {
             throw new Error('Ocorreu um erro na resolução das Promises.');
         else
             return res;
+    });
+};
+
+export const getFullVideoData= async videoId => {
+
+    const video= await getVideoData(videoId);
+
+    const channelData= getChannelData(video.snippet.channelId);
+    const comments= getCommentsList(videoId);
+    const relatedVideos= getRelatedVideosList(video.snippet.tags);
+
+    return Promise.all([
+        channelData, comments, relatedVideos
+    ]).then(res => {
+        if(res.some(p => !p))
+            throw new Error('Não foi possível carregar todos os dados relacionados ao vídeo.');
+        else
+            return [video, ...res];
     });
 };
 

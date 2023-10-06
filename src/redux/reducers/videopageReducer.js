@@ -5,7 +5,10 @@ import {
 const initialState= {
     loadingVideo: false,    
     errorVideo: '',
-    video: null
+    video: null,
+    channelData: null,
+    comments: null,
+    relatedVideos: null
 };
 
 export default function videopageReducer(state=initialState, action){
@@ -16,7 +19,10 @@ export default function videopageReducer(state=initialState, action){
                 ...state,
                 loadingVideo: true,
                 errorVideo: '',
-                video: null
+                video: null,
+                channelData: null,
+                comments: null,
+                relatedVideos: null
             };
 
         case LOAD_VIDEOPAGE_SUCCESS:
@@ -24,7 +30,10 @@ export default function videopageReducer(state=initialState, action){
                 ...state,
                 loadingVideo: false,
                 errorVideo: '',
-                video: action.payload.video
+                video: action.payload.video,
+                channelData: action.payload.channelData,
+                comments: action.payload.comments,
+                relatedVideos: action.payload.relatedVideos
             };
 
         case LOAD_VIDEOPAGE_ERROR:
@@ -32,7 +41,10 @@ export default function videopageReducer(state=initialState, action){
                 ...state,
                 loadingVideo: false,
                 errorVideo: action.payload.msg,
-                video: null
+                video: null,
+                channelData: null,
+                comments: null,
+                relatedVideos: null
             };
 
         default:

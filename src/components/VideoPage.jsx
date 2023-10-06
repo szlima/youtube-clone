@@ -8,34 +8,14 @@ import CompactVideo from './CompactVideo';
 import {
     getInfoDate, getInfoComments, getInfoViews,
     getInfoLikes, getInfoSubscribers,
-    getCommentsList, getRelatedVideosList,
-    getChannelData, getURLChannel
+    getURLChannel
 } from '../utils/functions';
 
-import {useState, useEffect} from 'react';
-
-function VideoPage({loadingVideo, errorVideo, video}){
-    const [comments, setComments]= useState(null);
-    const [relatedVideos, setRelatedVideos]= useState(null);
-    const [channelData, setChannelData]= useState(null);
+function VideoPage({loadingVideo, errorVideo, video, channelData, comments, relatedVideos}){
 
     const youtubeStyle= {
         paddingBottom: 'calc( 100% / (16/9) )' //aspect ratio
     };
-
-    useEffect(() => {
-        getChannelData(video.snippet.channelId)
-            .then(res => setChannelData(res))
-            .catch(err => console.error(err));
-
-        getCommentsList(video.id)
-            .then(res => setComments(res))
-            .catch(err => console.error(err));
-
-        getRelatedVideosList(video.snippet.tags)
-            .then(res => setRelatedVideos(res))
-            .catch(err => console.error(err));
-    }, []);
 
     return (
         <>
@@ -150,7 +130,10 @@ function VideoPage({loadingVideo, errorVideo, video}){
 const mapStateToProps= state => ({
     loadingVideo: state.videopageReducer.loadingVideo,
     errorVideo: state.videopageReducer.errorVideo,
-    video: state.videopageReducer.video
+    video: state.videopageReducer.video,
+    channelData: state.videopageReducer.channelData,
+    comments: state.videopageReducer.comments,
+    relatedVideos: state.videopageReducer.relatedVideos
 });
 
 export default connect(mapStateToProps)(VideoPage);

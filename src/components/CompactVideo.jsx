@@ -5,7 +5,7 @@ import {loadVideopageAction} from '../redux/actions/actionCreators';
 
 import {
     getInfoDate, getInfoViews, getInfoDuration,
-    getCompactVideo, getURLChannel
+    getCompactVideoData, getURLChannel
 } from '../utils/functions';
 
 function CompactVideo({video, id, loadVideopage}){
@@ -13,7 +13,7 @@ function CompactVideo({video, id, loadVideopage}){
     const [channelData, setChannelData]= useState(null);
 
     useEffect(() => {
-        getCompactVideo(id, video.snippet.channelId)
+        getCompactVideoData(id, video.snippet.channelId)
             .then(([
                 resVideoData, resChannelData
             ]) => {

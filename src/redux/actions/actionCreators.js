@@ -8,7 +8,7 @@ import {
 } from './actionMessages';
 
 import {
-    getFeedHomepage, getVideoData
+    getFeedHomepage, getFullVideoData
 } from '../../utils/functions';
 
 const loadFeedStart= () => ({
@@ -51,10 +51,13 @@ const loadVideopageStart= () => ({
     type: LOAD_VIDEOPAGE_START
 });
 
-const loadVideopageSuccess= video => ({
+const loadVideopageSuccess= (video, channelData, comments, relatedVideos) => ({
     type: LOAD_VIDEOPAGE_SUCCESS,
     payload: {
-        video
+        video,
+        channelData,
+        comments,
+        relatedVideos
     }
 });
 
@@ -70,8 +73,12 @@ export const loadVideopageAction= videoId => {
 
         dispatch(loadVideopageStart());
 
-        getVideoData(videoId)
-            .then(res => dispatch(loadVideopageSuccess(res)))
+        getFullVideoData(videoId)
+            .then(([
+                video, channelData, comments, relatedVideos
+            ]) => dispatch(loadVideopageSuccess(
+                video, channelData, comments, relatedVideos
+            )))
             .catch(() => dispatch(loadVideopageError()));
     };
 };
