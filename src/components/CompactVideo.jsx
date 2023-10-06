@@ -4,9 +4,8 @@ import {connect} from 'react-redux';
 import {loadVideopageAction} from '../redux/actions/actionCreators';
 
 import {
-    getInfoDate, getInfoViews,
-    getInfoDuration, getVideoData,
-    getChannelData, getURLChannel
+    getInfoDate, getInfoViews, getInfoDuration,
+    getCompactVideo, getURLChannel
 } from '../utils/functions';
 
 function CompactVideo({video, id, loadVideopage}){
@@ -14,18 +13,18 @@ function CompactVideo({video, id, loadVideopage}){
     const [channelData, setChannelData]= useState(null);
 
     useEffect(() => {
-        getVideoData(id)
-            .then(res => setVideoData(res))
-            .catch(err => console.error(err));
-
-        getChannelData(video.snippet.channelId)
-            .then(res => setChannelData(res))
-            .catch(err => console.error(err));
+        getCompactVideo(id, video.snippet.channelId)
+            .then(([
+                resVideoData, resChannelData
+            ]) => {
+                setVideoData(resVideoData);
+                setChannelData(resChannelData);
+            }).catch(err => console.error(err));
     }, []);
     
     return (
         <>
-            <div className='compact-video'>
+            <div className='compact-video' style={(!videoData | !channelData) ? {display: 'none'} : {}}>
                 <div onClick={() => loadVideopage(id)} className='compact-video-img'>
                     <img className='image' src={video.snippet.thumbnails.high.url}/>
                     <span className='compact-video-img-duration'>{getInfoDuration(videoData?.contentDetails.duration)}</span>

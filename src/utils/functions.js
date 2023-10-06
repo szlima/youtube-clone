@@ -26,6 +26,21 @@ export const getFeedHomepage= async () => {
     }).catch(err => console.error(err));
 };
 
+export const getCompactVideo= async (videoId, channelId) => {
+
+    const videoData= getVideoData(videoId);
+    const channelData= getChannelData(channelId);
+
+    return Promise.all([
+        videoData, channelData
+    ]).then(res => {
+        if(res.some(p => !p))
+            throw new Error('Ocorreu um erro na resolução das Promises.');
+        else
+            return res;
+    });
+};
+
 export const getInfoDate= _initialDate => {
     const initialDate= new Date(_initialDate);
     const currentDate= new Date();
