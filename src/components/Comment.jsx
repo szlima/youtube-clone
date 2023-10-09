@@ -14,7 +14,7 @@ export default function Comment({comment}){
     }, []);
 
     return <>
-        <div className="comment">
+        <div className="comment" style={!channelData ? {display: 'none'} : {}}>
             <a href={comment.snippet.topLevelComment.snippet.authorChannelUrl}>
                 <img className="comment-img" src={comment.snippet.topLevelComment.snippet.authorProfileImageUrl}/>
             </a>
