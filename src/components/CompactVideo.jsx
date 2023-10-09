@@ -1,38 +1,40 @@
 import {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
+
+import {loadVideopageAction} from '../redux/actions/actionCreators';
 
 import {
-    getInfoDate, getInfoViews,
-    getInfoDuration, getVideoData, getChannelData,
-    getURLVideo, getURLChannel
+    getInfoDate, getInfoViews, getInfoDuration,
+    getCompactVideoData, getURLChannel
 } from '../utils/functions';
 
-export default function CompactVideo({video, id}){
+function CompactVideo({video, id, loadVideopage}){
     const [videoData, setVideoData]= useState(null);
     const [channelData, setChannelData]= useState(null);
 
     useEffect(() => {
-        getVideoData(id)
-            .then(res => setVideoData(res))
-            .catch(err => console.error(err));
-
-        getChannelData(video.snippet.channelId)
-            .then(res => setChannelData(res))
-            .catch(err => console.error(err));
+        getCompactVideoData(id, video.snippet.channelId)
+            .then(([
+                resVideoData, resChannelData
+            ]) => {
+                setVideoData(resVideoData);
+                setChannelData(resChannelData);
+            }).catch(err => console.error(err));
     }, []);
     
     return (
         <>
-            <div className='compact-video'>
-                <a href={getURLVideo(id)} className='compact-video-img'>
+            <div className='compact-video' style={(!videoData | !channelData) ? {display: 'none'} : {}}>
+                <div onClick={() => loadVideopage(id)} className='compact-video-img'>
                     <img className='image' src={video.snippet.thumbnails.high.url}/>
                     <span className='compact-video-img-duration'>{getInfoDuration(videoData?.contentDetails.duration)}</span>
-                </a>
+                </div>
                 <div className='compact-video-info'>
                     <a href={getURLChannel(video.snippet.channelId)}>
                         <img className='compact-video-info-logo' src={channelData?.snippet.thumbnails.default.url}/>
                     </a>
                     <div className='compact-video-info-text'>
-                        <a href={getURLVideo(id)} className='compact-video-info-text-title'>{video.snippet.title}</a>
+                        <p onClick={() => loadVideopage(id)} className='compact-video-info-text-title'>{video.snippet.title}</p>
                         <div className='compact-video-info-text-data'>
                             <a href={getURLChannel(video.snippet.channelId)} className='compact-video-info-text-data-channel'>{video.snippet.channelTitle}</a>
                             <span className='compact-video-info-text-data-info'>
@@ -47,3 +49,9 @@ export default function CompactVideo({video, id}){
         </>
     );
 };
+
+const mapDispatchToProps= dispatch => ({
+    loadVideopage: videoId => dispatch(loadVideopageAction(videoId))
+});
+
+export default connect(null, mapDispatchToProps)(CompactVideo);

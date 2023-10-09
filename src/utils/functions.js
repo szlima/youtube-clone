@@ -3,8 +3,7 @@ import {KEY_API_YOUTUBE} from '../data/keys';
 import {
     HTTP_COMMENTS, HTTP_SEARCH,
     HTTP_CHANNELS, HTTP_VIDEOS,
-    HTTP_VIDEO_CATEGORIES,
-    URL_WATCH_VIDEO, URL_CHANNEL
+    HTTP_VIDEO_CATEGORIES, URL_CHANNEL
 } from './urls';
 
 export const getFeedHomepage= async () => {
@@ -19,11 +18,41 @@ export const getFeedHomepage= async () => {
         tagsFilter, popularVideos, newsVideos,
         sportsVideos, musicVideos
     ]).then(res => {
-        if(res.some(p => p === undefined))
+        if(res.some(p => (!p | (!p.length && p!=tagsFilter))))
             throw new Error('Ocorreu um erro na resolução das Promises.');
-        else
-            return res;
-    }).catch(err => console.error(err));
+        return res;
+    });
+};
+
+export const getCompactVideoData= async (videoId, channelId) => {
+
+    const videoData= getVideoData(videoId);
+    const channelData= getChannelData(channelId);
+
+    return Promise.all([
+        videoData, channelData
+    ]).then(res => {
+        if(res.some(p => !p))
+            throw new Error('Ocorreu um erro na resolução das Promises.');
+        return res;
+    });
+};
+
+export const getFullVideoData= async videoId => {
+
+    const video= await getVideoData(videoId);
+
+    const channelData= getChannelData(video.snippet.channelId);
+    const comments= getCommentsList(videoId);
+    const relatedVideos= getRelatedVideosList(video.snippet.tags);
+
+    return Promise.all([
+        channelData, comments, relatedVideos
+    ]).then(res => {
+        if(res.some(p => !p))
+            throw new Error('Não foi possível carregar todos os dados relacionados ao vídeo.');
+        return [video, ...res];
+    });
 };
 
 export const getInfoDate= _initialDate => {
@@ -51,23 +80,45 @@ export const getInfoDate= _initialDate => {
                         'há poucos segundos';
 };
 
+export const getInfoComments= totalComments => Number(totalComments).toLocaleString();
+
+const getInfoCount= total => {
+
+    const getFloor= measure => Math.floor(total/measure);
+
+    const billion= (() => getFloor(1000000000))();
+    const million= (() => getFloor(1000000))();
+    const thousand= (() => getFloor(1000))();
+
+    return billion >= 1 ?
+        `${billion} bi` :
+        million >= 1 ?
+            `${million} mi` :
+            thousand >= 1 ?
+                `${thousand} mil` :
+                `${total}`;
+};
+
 export const getInfoViews= totalViews => {
 
-    const getFloorViews= measure => Math.floor(totalViews/measure);
+    const info= getInfoCount(totalViews);
 
-    const billionViews= (() => getFloorViews(1000000000))();
-    const millionViews= (() => getFloorViews(1000000))();
-    const thousandViews= (() => getFloorViews(1000))();
+    if(info.includes('bi') || info.includes('mi'))
+        return `${info} de visualizações`;
 
-    return billionViews >= 1 ?
-        `${billionViews} bi de visualizações` :
-        millionViews >= 1 ?
-            `${millionViews} mi de visualizações` :
-            thousandViews >= 1 ?
-                `${thousandViews} mil visualizações` :
-                `${totalViews} visualizaç${totalViews==1 ? 'ão' : 'ões'}`;
-
+    return `${info} visualizaç${totalViews==1 ? 'ão' : 'ões'}`;
 };
+
+export const getInfoSubscribers= totalSubscribers => {
+    const info= getInfoCount(totalSubscribers);
+
+    if(info.includes('bi') || info.includes('mi'))
+        return `${info} de inscritos`;
+
+    return `${info} inscrito${totalSubscribers==1 ? '' : 's'}`;
+};
+
+export const getInfoLikes= totalLikes => getInfoCount(totalLikes);
 
 export const getInfoDuration= duration => {
 
@@ -101,9 +152,9 @@ export const getInfoDuration= duration => {
     return duration ?
         duration.startsWith("PT") ? getInfoTime() : "+24:00:00"
         : "";
-}
+};
 
-export const getCommentsList= async videoId => {
+const getCommentsList= async videoId => {
     
     return await axios.get(HTTP_COMMENTS + new URLSearchParams({
         key: KEY_API_YOUTUBE,
@@ -112,11 +163,10 @@ export const getCommentsList= async videoId => {
         maxResults: 10,
         order: 'relevance',
         textFormat:'plainText'
-    })).then(res => res.data)
-        .catch(err => console.error(err));
+    })).then(res => res.data);
 };
 
-export const getRelatedVideosList= async tags => {
+const getRelatedVideosList= async tags => {
 
     return await axios.get(HTTP_SEARCH + new URLSearchParams({
         key: KEY_API_YOUTUBE,
@@ -128,33 +178,38 @@ export const getRelatedVideosList= async tags => {
             (total, currentValue) =>
             total.concat('|', currentValue)
         )
-    })).then(res => res.data)
-    .catch(err => console.error(err));
+    })).then(res => res.data);
 }
 
 export const getChannelData= async channelId => {
 
     return await axios.get(HTTP_CHANNELS + new URLSearchParams({
         key: KEY_API_YOUTUBE,
-        part: 'snippet',
+        part: 'snippet, statistics',
         id: channelId,
         maxResults: 1
-    })).then(res => res.data.items[0])
-    .catch(err => console.error(err));
+    })).then(res => {
+        if(!res.data.items[0])
+            throw new Error('Canal não encontrado.');
+        return res.data.items[0];
+    });
 };
 
-export const getVideoData= async videoId => {
+const getVideoData= async videoId => {
 
     return await axios.get(HTTP_VIDEOS + new URLSearchParams({
         key: KEY_API_YOUTUBE,
-        part: 'contentDetails, statistics',
+        part: 'snippet, contentDetails, statistics',
         id: videoId,
         maxResults: 1
-    })).then(res => res.data.items[0])
-    .catch(err => console.error(err));
+    })).then(res => {
+        if(!res.data.items[0])
+            throw new Error('Vídeo não encontrado.');
+        return res.data.items[0];
+    });
 };
 
-export const getVideoCategories= async () => {
+const getVideoCategories= async () => {
 
     return await axios.get(HTTP_VIDEO_CATEGORIES + new URLSearchParams({
         key: KEY_API_YOUTUBE,
@@ -166,10 +221,10 @@ export const getVideoCategories= async () => {
             title: aux.snippet.title.split(/(\s|\/)/)[0],
             id: aux.id
         })
-    )).catch(err => console.error(err));
+    ));
 };
 
-export const getVideos= async (maxResults, videoCategoryId) => {
+const getVideos= async (maxResults, videoCategoryId) => {
 
     return await axios.get(HTTP_VIDEOS + new URLSearchParams({
           key: KEY_API_YOUTUBE,
@@ -179,10 +234,7 @@ export const getVideos= async (maxResults, videoCategoryId) => {
           hl: 'pt',
           maxResults,
           videoCategoryId
-    })).then(res => res.data.items)
-    .catch(err => console.error(err));
+    })).then(res => res.data.items);
 };
-
-export const getURLVideo= videoId => URL_WATCH_VIDEO.concat(videoId);
 
 export const getURLChannel= channelId => URL_CHANNEL.concat(channelId);

@@ -1,8 +1,15 @@
 import {
-    LOAD_FEED_START, LOAD_FEED_SUCCESS, LOAD_FEED_ERROR
+    LOAD_FEED_START, LOAD_FEED_SUCCESS, LOAD_FEED_ERROR,
+    LOAD_VIDEOPAGE_START, LOAD_VIDEOPAGE_SUCCESS, LOAD_VIDEOPAGE_ERROR
 } from './actionTypes';
 
-import {getFeedHomepage} from '../../utils/functions';
+import {
+    UNAVAILABLE_PAGE, UNAVAILABLE_VIDEO
+} from './actionMessages';
+
+import {
+    getFeedHomepage, getFullVideoData
+} from '../../utils/functions';
 
 const loadFeedStart= () => ({
     type: LOAD_FEED_START
@@ -19,7 +26,7 @@ const loadFeedSuccess= ({tagsFilter, ...videosFeed}) => ({
 const loadFeedError= () => ({
     type: LOAD_FEED_ERROR,
     payload: {
-        msg: 'Não foi possível carregar a página'
+        msg: UNAVAILABLE_PAGE
     }
 });
 
@@ -37,5 +44,41 @@ export const loadFeedAction= () => {
                 sportsVideos, musicVideos
             })))
             .catch(() => dispatch(loadFeedError()));
+    };
+};
+
+const loadVideopageStart= () => ({
+    type: LOAD_VIDEOPAGE_START
+});
+
+const loadVideopageSuccess= (video, channelData, comments, relatedVideos) => ({
+    type: LOAD_VIDEOPAGE_SUCCESS,
+    payload: {
+        video,
+        channelData,
+        comments,
+        relatedVideos
+    }
+});
+
+const loadVideopageError= () => ({
+    type: LOAD_VIDEOPAGE_ERROR,
+    payload: {
+        msg: UNAVAILABLE_VIDEO
+    }
+});
+
+export const loadVideopageAction= videoId => {
+    return dispatch => {
+
+        dispatch(loadVideopageStart());
+
+        getFullVideoData(videoId)
+            .then(([
+                video, channelData, comments, relatedVideos
+            ]) => dispatch(loadVideopageSuccess(
+                video, channelData, comments, relatedVideos
+            )))
+            .catch(() => dispatch(loadVideopageError()));
     };
 };
