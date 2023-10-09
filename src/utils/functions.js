@@ -3,8 +3,7 @@ import {KEY_API_YOUTUBE} from '../data/keys';
 import {
     HTTP_COMMENTS, HTTP_SEARCH,
     HTTP_CHANNELS, HTTP_VIDEOS,
-    HTTP_VIDEO_CATEGORIES,
-    URL_WATCH_VIDEO, URL_CHANNEL
+    HTTP_VIDEO_CATEGORIES, URL_CHANNEL
 } from './urls';
 
 export const getFeedHomepage= async () => {
@@ -19,11 +18,10 @@ export const getFeedHomepage= async () => {
         tagsFilter, popularVideos, newsVideos,
         sportsVideos, musicVideos
     ]).then(res => {
-        if(res.some(p => p === undefined))
+        if(res.some(p => (!p | (!p.length && p!=tagsFilter))))
             throw new Error('Ocorreu um erro na resolução das Promises.');
-        else
-            return res;
-    }).catch(err => console.error(err));
+        return res;
+    });
 };
 
 export const getCompactVideoData= async (videoId, channelId) => {
@@ -36,8 +34,7 @@ export const getCompactVideoData= async (videoId, channelId) => {
     ]).then(res => {
         if(res.some(p => !p))
             throw new Error('Ocorreu um erro na resolução das Promises.');
-        else
-            return res;
+        return res;
     });
 };
 
@@ -54,8 +51,7 @@ export const getFullVideoData= async videoId => {
     ]).then(res => {
         if(res.some(p => !p))
             throw new Error('Não foi possível carregar todos os dados relacionados ao vídeo.');
-        else
-            return [video, ...res];
+        return [video, ...res];
     });
 };
 
@@ -158,7 +154,7 @@ export const getInfoDuration= duration => {
         : "";
 };
 
-export const getCommentsList= async videoId => {
+const getCommentsList= async videoId => {
     
     return await axios.get(HTTP_COMMENTS + new URLSearchParams({
         key: KEY_API_YOUTUBE,
@@ -167,11 +163,10 @@ export const getCommentsList= async videoId => {
         maxResults: 10,
         order: 'relevance',
         textFormat:'plainText'
-    })).then(res => res.data)
-        .catch(err => console.error(err));
+    })).then(res => res.data);
 };
 
-export const getRelatedVideosList= async tags => {
+const getRelatedVideosList= async tags => {
 
     return await axios.get(HTTP_SEARCH + new URLSearchParams({
         key: KEY_API_YOUTUBE,
@@ -183,8 +178,7 @@ export const getRelatedVideosList= async tags => {
             (total, currentValue) =>
             total.concat('|', currentValue)
         )
-    })).then(res => res.data)
-    .catch(err => console.error(err));
+    })).then(res => res.data);
 }
 
 export const getChannelData= async channelId => {
@@ -194,11 +188,14 @@ export const getChannelData= async channelId => {
         part: 'snippet, statistics',
         id: channelId,
         maxResults: 1
-    })).then(res => res.data.items[0])
-    .catch(err => console.error(err));
+    })).then(res => {
+        if(!res.data.items[0])
+            throw new Error('Canal não encontrado.');
+        return res.data.items[0];
+    });
 };
 
-export const getVideoData= async videoId => {
+const getVideoData= async videoId => {
 
     return await axios.get(HTTP_VIDEOS + new URLSearchParams({
         key: KEY_API_YOUTUBE,
@@ -212,7 +209,7 @@ export const getVideoData= async videoId => {
     });
 };
 
-export const getVideoCategories= async () => {
+const getVideoCategories= async () => {
 
     return await axios.get(HTTP_VIDEO_CATEGORIES + new URLSearchParams({
         key: KEY_API_YOUTUBE,
@@ -224,10 +221,10 @@ export const getVideoCategories= async () => {
             title: aux.snippet.title.split(/(\s|\/)/)[0],
             id: aux.id
         })
-    )).catch(err => console.error(err));
+    ));
 };
 
-export const getVideos= async (maxResults, videoCategoryId) => {
+const getVideos= async (maxResults, videoCategoryId) => {
 
     return await axios.get(HTTP_VIDEOS + new URLSearchParams({
           key: KEY_API_YOUTUBE,
@@ -237,10 +234,7 @@ export const getVideos= async (maxResults, videoCategoryId) => {
           hl: 'pt',
           maxResults,
           videoCategoryId
-    })).then(res => res.data.items)
-    .catch(err => console.error(err));
+    })).then(res => res.data.items);
 };
-
-export const getURLVideo= videoId => URL_WATCH_VIDEO.concat(videoId);
 
 export const getURLChannel= channelId => URL_CHANNEL.concat(channelId);
