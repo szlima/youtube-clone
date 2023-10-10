@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import {connect} from 'react-redux';
 
+import Navbar from "./Navbar";
 import HomePage from "./HomePage";
 import VideoPage from "./VideoPage";
 
@@ -14,6 +15,7 @@ function App({loadingVideo, errorVideo, video, loadFeed}) {
 
   return (
     <>
+      <Navbar />
       {(loadingVideo | !!video | !!errorVideo) ?
         <VideoPage /> :
         <HomePage />
