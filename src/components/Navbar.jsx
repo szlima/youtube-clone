@@ -1,12 +1,15 @@
+import {connect} from "react-redux";
 
-export default function Navbar(){
+import {goHomepageAction} from '../redux/actions/actionCreators'
+
+function Navbar({goHomepage}){
 
     return (
         <>
             <nav className="navbar">
                 <div className='navbar-toggle'>
                     <ion-icon name="menu-outline"></ion-icon>
-                    <img src='../src/img/logo.png' alt='Logo do Youtube'/>
+                    <img src='../src/img/logo.png' alt='Logo do Youtube' onClick={goHomepage}/>
                 </div>
 
                 <div className='navbar-search'>
@@ -27,4 +30,11 @@ export default function Navbar(){
             </nav>
         </>
     );
-}
+};
+
+
+const mapDispatchToProps= dispatch => ({
+    goHomepage: () => dispatch(goHomepageAction())
+});
+
+export default connect(null, mapDispatchToProps)(Navbar);
