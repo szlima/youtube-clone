@@ -1,6 +1,7 @@
 import {
     LOAD_FEED_START, LOAD_FEED_SUCCESS, LOAD_FEED_ERROR,
-    LOAD_VIDEOPAGE_START, LOAD_VIDEOPAGE_SUCCESS, LOAD_VIDEOPAGE_ERROR
+    LOAD_VIDEOPAGE_START, LOAD_VIDEOPAGE_SUCCESS, LOAD_VIDEOPAGE_ERROR,
+    GO_HOMEPAGE
 } from './actionTypes';
 
 import {
@@ -82,3 +83,7 @@ export const loadVideopageAction= videoId => {
             .catch(() => dispatch(loadVideopageError()));
     };
 };
+
+export const goHomepageAction= () => ({
+    type: GO_HOMEPAGE
+});

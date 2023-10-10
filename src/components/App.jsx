@@ -6,7 +6,7 @@ import VideoPage from "./VideoPage";
 
 import {loadFeedAction} from '../redux/actions/actionCreators';
 
-function App({video, loadFeed}) {
+function App({loadingVideo, errorVideo, video, loadFeed}) {
 
   useEffect(() => {
     loadFeed();
@@ -14,7 +14,7 @@ function App({video, loadFeed}) {
 
   return (
     <>
-      {video ?
+      {(loadingVideo | !!video | !!errorVideo) ?
         <VideoPage /> :
         <HomePage />
       }
@@ -23,6 +23,8 @@ function App({video, loadFeed}) {
 };
 
 const mapStateToProps= state => ({
+  loadingVideo: state.videopageReducer.loadingVideo,
+  errorVideo: state.videopageReducer.errorVideo,
   video: state.videopageReducer.video
 });
 

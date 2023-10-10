@@ -1,5 +1,6 @@
 import {
-    LOAD_VIDEOPAGE_START, LOAD_VIDEOPAGE_SUCCESS, LOAD_VIDEOPAGE_ERROR
+    LOAD_VIDEOPAGE_START, LOAD_VIDEOPAGE_SUCCESS, LOAD_VIDEOPAGE_ERROR,
+    GO_HOMEPAGE
 } from '../actions/actionTypes';
 
 const initialState= {
@@ -45,6 +46,12 @@ export default function videopageReducer(state=initialState, action){
                 channelData: null,
                 comments: null,
                 relatedVideos: null
+            };
+
+        case GO_HOMEPAGE:
+            return {
+                ...state,
+                ...initialState
             };
 
         default:
