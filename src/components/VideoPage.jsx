@@ -21,8 +21,8 @@ function VideoPage({loadingVideo, errorVideo, video, channelData, comments, rela
             {(!!loadingVideo | !!errorVideo) ?
                 <>
                     <main className="videopage-unavailable" style={!loadingVideo ? {display: 'none'} : {}}>
-                        <p>(...)</p>
-                        <p>Carregando</p>
+                        <h1>(...)</h1>
+                        <h1>Carregando</h1>
                     </main>
                     <main className="videopage-unavailable" style={!errorVideo ? {display: 'none'} : {}}>
                         <img src='../src/img/unavailable_video.png' alt='Vídeo não encontrado'/>
