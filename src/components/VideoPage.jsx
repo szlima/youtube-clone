@@ -4,13 +4,17 @@ import {connect} from 'react-redux';
 import Comment from './Comment';
 import CompactVideo from './CompactVideo';
 
+import {goHomepageAction} from '../redux/actions/actionCreators';
+
 import {
     getInfoDate, getInfoComments, getInfoViews,
     getInfoLikes, getInfoSubscribers,
     getURLChannel
 } from '../utils/functions';
 
-function VideoPage({loadingVideo, errorVideo, video, channelData, comments, relatedVideos}){
+function VideoPage({
+    loadingVideo, errorVideo, video, channelData, comments, relatedVideos, goHomepage
+}){
 
     const youtubeStyle= {
         paddingBottom: 'calc( 100% / (16/9) )' //aspect ratio
@@ -27,7 +31,7 @@ function VideoPage({loadingVideo, errorVideo, video, channelData, comments, rela
                     <main className="videopage-unavailable" style={!errorVideo ? {display: 'none'} : {}}>
                         <img src='../src/img/unavailable_video.png' alt='Vídeo não encontrado'/>
                         <h1>{errorVideo}</h1>
-                        <button>Ir para a página inicial</button>
+                        <button onClick={goHomepage}>Ir para a página inicial</button>
                     </main>
                 </>
                 :
@@ -132,4 +136,8 @@ const mapStateToProps= state => ({
     relatedVideos: state.videopageReducer.relatedVideos
 });
 
-export default connect(mapStateToProps)(VideoPage);
+const mapDispatchToProps= dispatch => ({
+    goHomepage: () => dispatch(goHomepageAction())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(VideoPage);
