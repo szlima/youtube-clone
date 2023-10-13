@@ -16,10 +16,6 @@ function VideoPage({
     loadingVideo, errorVideo, video, channelData, comments, relatedVideos, goHomepage
 }){
 
-    const youtubeStyle= {
-        paddingBottom: 'calc( 100% / (16/9) )' //aspect ratio
-    };
-
     return (
         <div className="videopage">
             {(!!loadingVideo | !!errorVideo) ?
@@ -38,10 +34,7 @@ function VideoPage({
                 <div className="videopage-available">
                     <main className="videopage-available-player">
                         <div className="videopage-available-player-video">
-                            <Youtube className='youtube'
-                                videoId={video.id}
-                                style={youtubeStyle}
-                            />
+                            <Youtube className='youtube' videoId={video.id} />
                             <h1>{video.snippet.title}</h1>
                         </div>
                         <div className="videopage-available-player-metadata">
