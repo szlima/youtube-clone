@@ -43,13 +43,13 @@ export const getFullVideoData= async videoId => {
     const video= await getVideoData(videoId);
 
     const channelData= getChannelData(video.snippet.channelId);
-    const comments= getCommentsList(videoId);
+    const comments= Number(video.statistics.commentCount) ? getCommentsList(videoId) : null;
     const relatedVideos= getRelatedVideosList(video.snippet.tags);
 
     return Promise.all([
         channelData, comments, relatedVideos
     ]).then(res => {
-        if(res.some(p => !p))
+        if(!channelData)
             throw new Error('Não foi possível carregar todos os dados relacionados ao vídeo.');
         return [video, ...res];
     });

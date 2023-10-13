@@ -89,7 +89,7 @@ function VideoPage({
                             </div>
                         </div>
                         <div className='videopage-available-player-comments'>
-                            <div className={`videopage-available-player-comments-wrap ${comments?.pageInfo.totalResults > 0 ? '' : 'no-comment-list'}`}>
+                            <div className={`videopage-available-player-comments-wrap ${video.statistics.commentCount > 0 ? '' : 'no-comment-list'}`}>
                                 <div className='videopage-available-player-comments-header'>
                                     <span className='total-comments'>Comentários<span className='total-comments-number'>{getInfoComments(video.statistics.commentCount)}</span></span>
                                     <span className='expand-comments'>
@@ -112,7 +112,7 @@ function VideoPage({
                             </div>
                         </div>
                     </main>
-                    <aside className="videopage-available-related">
+                    <aside className="videopage-available-related" style={relatedVideos?.items.length ? {} : {display: 'none'}}>
                         {
                             relatedVideos?.items.map(value => {
                                 if(value.id.videoId === video.id)
