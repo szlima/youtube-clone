@@ -4,40 +4,37 @@ import {connect} from 'react-redux';
 import Comment from './Comment';
 import CompactVideo from './CompactVideo';
 
+import {goHomepageAction} from '../redux/actions/actionCreators';
+
 import {
     getInfoDate, getInfoComments, getInfoViews,
     getInfoLikes, getInfoSubscribers,
     getURLChannel
 } from '../utils/functions';
 
-function VideoPage({loadingVideo, errorVideo, video, channelData, comments, relatedVideos}){
-
-    const youtubeStyle= {
-        paddingBottom: 'calc( 100% / (16/9) )' //aspect ratio
-    };
+function VideoPage({
+    loadingVideo, errorVideo, video, channelData, comments, relatedVideos, goHomepage
+}){
 
     return (
         <div className="videopage">
             {(!!loadingVideo | !!errorVideo) ?
                 <>
                     <main className="videopage-unavailable" style={!loadingVideo ? {display: 'none'} : {}}>
-                        <p>(...)</p>
-                        <p>Carregando</p>
+                        <h1>(...)</h1>
+                        <h1>Carregando</h1>
                     </main>
                     <main className="videopage-unavailable" style={!errorVideo ? {display: 'none'} : {}}>
                         <img src='../src/img/unavailable_video.png' alt='Vídeo não encontrado'/>
                         <h1>{errorVideo}</h1>
-                        <button>Ir para a página inicial</button>
+                        <button onClick={goHomepage}>Ir para a página inicial</button>
                     </main>
                 </>
                 :
                 <div className="videopage-available">
                     <main className="videopage-available-player">
                         <div className="videopage-available-player-video">
-                            <Youtube className='youtube'
-                                videoId={video.id}
-                                style={youtubeStyle}
-                            />
+                            <Youtube className='youtube' videoId={video.id} />
                             <h1>{video.snippet.title}</h1>
                         </div>
                         <div className="videopage-available-player-metadata">
@@ -85,7 +82,7 @@ function VideoPage({loadingVideo, errorVideo, video, channelData, comments, rela
                             </div>
                         </div>
                         <div className='videopage-available-player-comments'>
-                            <div className={`videopage-available-player-comments-wrap ${comments?.pageInfo.totalResults > 0 ? '' : 'no-comment-list'}`}>
+                            <div className={`videopage-available-player-comments-wrap ${video.statistics.commentCount > 0 ? '' : 'no-comment-list'}`}>
                                 <div className='videopage-available-player-comments-header'>
                                     <span className='total-comments'>Comentários<span className='total-comments-number'>{getInfoComments(video.statistics.commentCount)}</span></span>
                                     <span className='expand-comments'>
@@ -108,7 +105,7 @@ function VideoPage({loadingVideo, errorVideo, video, channelData, comments, rela
                             </div>
                         </div>
                     </main>
-                    <aside className="videopage-available-related">
+                    <aside className="videopage-available-related" style={relatedVideos?.items.length ? {} : {display: 'none'}}>
                         {
                             relatedVideos?.items.map(value => {
                                 if(value.id.videoId === video.id)
@@ -132,4 +129,8 @@ const mapStateToProps= state => ({
     relatedVideos: state.videopageReducer.relatedVideos
 });
 
-export default connect(mapStateToProps)(VideoPage);
+const mapDispatchToProps= dispatch => ({
+    goHomepage: () => dispatch(goHomepageAction())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(VideoPage);
